@@ -1,0 +1,19 @@
+.hero-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.hero-container .logo {
+    position: absolute;
+    top: calc(14%);
+    left: calc(4%);
+    max-height: 200px;
+    max-width: 400px;
+}
+
+.hero-container .tags_container {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 4em;
+    margin-left: 4em;
+}

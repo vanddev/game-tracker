@@ -1,0 +1,19 @@
+.carousel-item-padding {
+    padding: 0 10px;
+}
+
+.carousel-container .react-multiple-carousel__arrow--right {
+    right: calc(2%);
+}
+
+.carousel-container .react-multiple-carousel__arrow--left {
+    left: calc(2%);
+}
+
+.carousel-container .card {
+    box-shadow: none;
+}
+
+.carousel-container .card-content {
+    background-color: #1a1a1c;
+}
