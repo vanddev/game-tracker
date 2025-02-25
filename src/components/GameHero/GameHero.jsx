@@ -1,9 +1,23 @@
+import { useEffect, useRef } from 'react'
 import './GameHero.css'
+import { average } from 'color.js'
 
-const GameHero = ({hero, logo}) => {
+const GameHero = ({ hero, logo, colorHandle }) => {
+
+  const onLoadHandle = async (e) => {
+    const image = e.currentTarget
+
+    const averageColor = await average(image, {
+        amount: 1,
+        format: "array"
+    });
+
+    colorHandle(averageColor)
+  }
+
   return (
     <div className="hero-container">
-      <img src={hero.url} alt={hero.name}/>
+      <img id="hero-img" src={hero.url} alt={hero.name} onLoad={onLoadHandle}/>
       <img src={logo.url} className="logo" />
       <div className="tags are-large tags_container">
         <span className="tag">Not Played</span>
