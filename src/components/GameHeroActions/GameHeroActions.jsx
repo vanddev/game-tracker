@@ -23,25 +23,6 @@ const GameHeroActions = ( { bgColor } ) => {
   return (
     
     <div className="hero-actions" style={bgColor ? {backgroundColor: bgColor}: {}}>
-        {/* <div className="buttons">
-            <div className="button is-primary">Add as Finished</div>
-            <div className="button is-primary">Add as To Be Played</div>
-            <div className="button is-primary">Add as Droped</div>
-            <div className="button is-primary">Add as Liked</div>
-        </div> */}
-
-      {/* <div>
-        <div className="tags are-medium tags_container">
-          <span className="tag">PC</span>
-          <span className="tag">PS5</span>
-          <span className="tag">PS4</span>
-        </div>
-        <div className="tags are-medium tags_container">
-          <span className="tag">RPG</span>
-          <span className="tag">Hack'n Slash</span>
-          <span className="tag">Adventure</span>
-        </div>
-      </div> */}
       <div>
         <p>
           <strong>Genres: </strong>
@@ -50,6 +31,10 @@ const GameHeroActions = ( { bgColor } ) => {
         <p>
           <strong>Platforms: </strong>
           <a>PC</a>, <a>PS5</a>, <a>PS4</a>
+        </p>
+        <p>
+          <strong>Themes: </strong>
+          <a>Action</a>, <a>Fantasy</a>, <a>Historical</a>
         </p>
       </div>
       <div className={isDropdownActive ? "dropdown is-active" : "dropdown"}>

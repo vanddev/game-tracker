@@ -17,13 +17,15 @@ const GameHero = ({ hero, logo, colorHandle }) => {
 
   return (
     <div className="hero-container">
-      <img id="hero-img" src={hero.url} alt={hero.name} onLoad={onLoadHandle}/>
+      <img src={hero.url} alt={hero.name} onLoad={onLoadHandle}/>
       <img src={logo.url} className="logo" />
-      <div className="tags are-large tags_container">
-        <span className="tag">Not Played</span>
-        <span className="tag">Steam</span>
-        <span className="tag">PS5</span>
-        <span className="tag">PS4</span>
+      <div className="hltb">
+        <div className='htlb-content'>
+            <div><p>Main Story</p><p>65 Hours</p></div>
+            <div><p>Main + Sides</p><p>82 Hours</p></div>
+            <div><p>Completionist</p><p>102 Hours</p></div>
+            <div><p>All Styles</p><p>84 Hours</p></div>
+        </div>
       </div>
     </div>
   )
