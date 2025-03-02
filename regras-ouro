@@ -1,0 +1,5 @@
+Resumo das diferenças:
+Hook	Uso	Exemplo de Caso
+useEffect	Executar efeitos após renderização	Fetch API, subscriptions
+useCallback	Memorizar funções para evitar recriação	Funções passadas a componentes filhos
+useMemo	Memorizar valores para evitar recálculo	Cálculos complexos, filtragem
