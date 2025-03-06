@@ -3,12 +3,14 @@ import './GameDetails.css'
 const GameDetails = () => {
   return (
     <>
-      {/* <div className='game-details' style={{display: "flex"}}>
-        <div id='about' style={{flexBasis: "700px"}}>
+      <div className='game-details' style={{display: "flex", gap: "20px"}}>
+        <div id='about' className='wrapper' style={{flexBasis: "768px", flexGrow: "1"}}>
           <p>God of War is the sequel to God of War III as well as a continuation of the canon God of War chronology. Unlike previous installments, this game focuses on Norse mythology and follows an older and more seasoned Kratos and his son Atreus in the years since the third game. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same.</p>
+          <hr/>
+          <h3>Story</h3>
           <p>Many years have passed since Kratos, Spartan warrior and former Greek God of War, took his vengeance against the Greek Gods, and he now lives with his young son Atreus in ancient Norway in the realm of Midgard. The game begins after the death of the Jötunn warrior Faye, Kratos' second wife and Atreus' mother, whose last request was for her ashes to be spread at the highest speak of the nine realms. Kratos and Atreus prepare a funeral pyre for her, mourn her death and soon go on a hunt as per Kratos' desire. However much to Kratos' disappointment, Atreus proves his incompetence and lack of focus, making Kratos reconsider taking Atreus in his journey. Kratos is soon attacked by a mysterious stranger with godlike powers, and who cannot feel anything physically. After seemingly killing him, Kratos reluctantly takes Atreus with him and begins their journey.</p>
         </div>
-        <div id="spec">
+        <div id="spec" className='wrapper'>
           <div>
             <p>Releases</p>
             <div>
@@ -19,8 +21,8 @@ const GameDetails = () => {
             </div>  
           </div>
         </div>
-      </div> */}
-      <div className="game-details columns">
+      </div>
+      {/* <div className="game-details columns">
         <div className="column is-half about">
           <p>God of War is the sequel to God of War III as well as a continuation of the canon God of War chronology. Unlike previous installments, this game focuses on Norse mythology and follows an older and more seasoned Kratos and his son Atreus in the years since the third game. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same.</p>
           <p>Many years have passed since Kratos, Spartan warrior and former Greek God of War, took his vengeance against the Greek Gods, and he now lives with his young son Atreus in ancient Norway in the realm of Midgard. The game begins after the death of the Jötunn warrior Faye, Kratos' second wife and Atreus' mother, whose last request was for her ashes to be spread at the highest speak of the nine realms. Kratos and Atreus prepare a funeral pyre for her, mourn her death and soon go on a hunt as per Kratos' desire. However much to Kratos' disappointment, Atreus proves his incompetence and lack of focus, making Kratos reconsider taking Atreus in his journey. Kratos is soon attacked by a mysterious stranger with godlike powers, and who cannot feel anything physically. After seemingly killing him, Kratos reluctantly takes Atreus with him and begins their journey.</p>
@@ -58,7 +60,7 @@ const GameDetails = () => {
               <span>Actions</span>
             </div>
         </div>
-      </div>
+      </div> */}
       <div className='wrapper'>
         <h3>How Long to Beat</h3>
         <div className="level">
