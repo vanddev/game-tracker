@@ -8,8 +8,8 @@ const SimilarGames = () => {
         fullHD: {
             // the naming can be any, depends on you.
             breakpoint: { min: 1408, max: 9999 },
-            items: 5,
-            slidesToSlide: 5
+            items: 6,
+            slidesToSlide: 6
         },
         widescreen: {
             breakpoint: { max: 1407, min: 1216 },
@@ -34,7 +34,7 @@ const SimilarGames = () => {
     };
     return (
         <section className="similar_games">
-            <h3>Similar Games</h3>
+            <h6 style={{paddingLeft: "20px"}}>Similar Games</h6>
             <Carousel 
                 responsive={responsive}
                 showDots={false}

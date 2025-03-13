@@ -22,3 +22,9 @@ main {
 .flex-content {
   display: flex
 }
+
+h6 {
+  color: var(--bulma-strong-color);
+  font-weight: var(--bulma-strong-weight);
+  margin-bottom: 4px;
+}

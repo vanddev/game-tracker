@@ -1,96 +1,104 @@
 import './GameDetails.css'
 
 const GameDetails = () => {
+  const keywords = ['greek mythology', 'exploration', 'violence', 'story driven', 'norse mythology', "crafting", 'dark fantasy', "upgradable weapons", "cinematic", "deer", "mythology", "hand-to-hand combat", "combat", "over the shoulder", "emotional", "trolls", "boss fight", "game critics awards",  "e3 2017", "bow and arrow", "descendants of other characters", "e3 2016", "skill tree", "the game awards 2017", "the game awards - nominee", "the game awards 2016", "narrative", "norse", "male protagonist", "kratos", "the game awards - most anticipated game - nominee", "father and son relationship"]
+  
   return (
-    <>
-      <div className='game-details' style={{display: "flex", gap: "20px"}}>
-        <div id='about' className='wrapper' style={{flexBasis: "768px", flexGrow: "1"}}>
-          <p>God of War is the sequel to God of War III as well as a continuation of the canon God of War chronology. Unlike previous installments, this game focuses on Norse mythology and follows an older and more seasoned Kratos and his son Atreus in the years since the third game. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same.</p>
-          <hr/>
-          <h3>Story</h3>
-          <p>Many years have passed since Kratos, Spartan warrior and former Greek God of War, took his vengeance against the Greek Gods, and he now lives with his young son Atreus in ancient Norway in the realm of Midgard. The game begins after the death of the Jötunn warrior Faye, Kratos' second wife and Atreus' mother, whose last request was for her ashes to be spread at the highest speak of the nine realms. Kratos and Atreus prepare a funeral pyre for her, mourn her death and soon go on a hunt as per Kratos' desire. However much to Kratos' disappointment, Atreus proves his incompetence and lack of focus, making Kratos reconsider taking Atreus in his journey. Kratos is soon attacked by a mysterious stranger with godlike powers, and who cannot feel anything physically. After seemingly killing him, Kratos reluctantly takes Atreus with him and begins their journey.</p>
-        </div>
-        <div id="spec" className='wrapper'>
-          <div>
-            <p>Releases</p>
-            <div>
-              <span>Playstation 4</span> <span>2018-4-20</span>
+    <div className='game-details'>
+      <div id='about' className='wrapper' style={{flexBasis: "768px", flexGrow: "1"}}>
+        <p>God of War is the sequel to God of War III as well as a continuation of the canon God of War chronology. Unlike previous installments, this game focuses on Norse mythology and follows an older and more seasoned Kratos and his son Atreus in the years since the third game. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same.</p>
+        <hr/>
+        <div className="spec" style={{display: "flex", width: "100%", justifyContent: "space-between"}}>
+          <div className="spec-column" style={{display: "flex", flexDirection: "column", flex: "0 0 calc(100% / 4 - 10px)"}}>
+            <div className='spec-item'>
+              <span className='el-title'>Main Developers</span>
+              <ul><li>Santa Monica Studios</li></ul>
             </div>
-            <div>
-              <span>PC</span> <span>2022-4-20</span>
-            </div>  
+            <div className='spec-item'>
+              <span className='el-title'>Series</span>
+              <ul><li>God of War</li></ul>
+            </div>
           </div>
+          <div className="spec-column" style={{display: "flex", flexDirection: "column", flex: "0 0 calc(100% / 4 - 10px)"}}>
+            <div className='spec-item'>
+              <span className='el-title'>Publishers</span>
+              <ul><li>Sony</li></ul>
+            </div>
+            <div className='spec-item'>
+              <span className='el-title'>Is Spin-off of</span>
+              <ul><li>-</li></ul>
+            </div>
+          </div>
+          <div className="spec-column" style={{display: "flex", flexDirection: "column", flex: "0 0 calc(100% / 4 - 10px)"}}>
+            <div className='spec-item'>
+              <span className='el-title'>Game Modes</span>
+              <ul><li>Single Player</li></ul>
+            </div>
+            <div className='spec-item'>
+              <span className='el-title'>Franchises</span>
+              <ul><li>God of War</li></ul>
+            </div>
+          </div>
+          <div className="spec-column" style={{display: "flex", flexDirection: "column", flex: "0 0 calc(100% / 4 - 10px)"}}>
+            <div className='spec-item'>
+              <span className='el-title'>Players Perspective</span>
+              <ul>
+                <li>Third Person</li>
+              </ul>
+            </div>
+            <div className='spec-item'>
+              <span className='el-title'>Releases</span>
+              <ul>
+                <li>Playstation 4 - 2018</li>
+                <li>PC - 2022</li>
+              </ul>
+            </div>
+          </div> 
         </div>
+        <hr/>
+        <span className='el-title'>Story</span>
+        <p>Many years have passed since Kratos, Spartan warrior and former Greek God of War, took his vengeance against the Greek Gods, and he now lives with his young son Atreus in ancient Norway in the realm of Midgard. The game begins after the death of the Jötunn warrior Faye, Kratos' second wife and Atreus' mother, whose last request was for her ashes to be spread at the highest speak of the nine realms. Kratos and Atreus prepare a funeral pyre for her, mourn her death and soon go on a hunt as per Kratos' desire. However much to Kratos' disappointment, Atreus proves his incompetence and lack of focus, making Kratos reconsider taking Atreus in his journey. Kratos is soon attacked by a mysterious stranger with godlike powers, and who cannot feel anything physically. After seemingly killing him, Kratos reluctantly takes Atreus with him and begins their journey.</p>
       </div>
-      {/* <div className="game-details columns">
-        <div className="column is-half about">
-          <p>God of War is the sequel to God of War III as well as a continuation of the canon God of War chronology. Unlike previous installments, this game focuses on Norse mythology and follows an older and more seasoned Kratos and his son Atreus in the years since the third game. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same.</p>
-          <p>Many years have passed since Kratos, Spartan warrior and former Greek God of War, took his vengeance against the Greek Gods, and he now lives with his young son Atreus in ancient Norway in the realm of Midgard. The game begins after the death of the Jötunn warrior Faye, Kratos' second wife and Atreus' mother, whose last request was for her ashes to be spread at the highest speak of the nine realms. Kratos and Atreus prepare a funeral pyre for her, mourn her death and soon go on a hunt as per Kratos' desire. However much to Kratos' disappointment, Atreus proves his incompetence and lack of focus, making Kratos reconsider taking Atreus in his journey. Kratos is soon attacked by a mysterious stranger with godlike powers, and who cannot feel anything physically. After seemingly killing him, Kratos reluctantly takes Atreus with him and begins their journey.</p>
-        </div>
-        <div className="column is-narrow spec">
-            <div>
-              <p>Releases</p>
+      <div className='more-info'>
+        <div className="wrapper">
+          <span className='el-title'>Player Ratings</span>
+          <div className="ratings">
+            <div className='rating'>
+              <span>Metacritic</span>
               <div>
-                <span>Playstation 4</span> <span>2018-4-20</span>
+                <span>96</span>
               </div>
+            </div>
+            <div className='rating'>
+              <span>How Long To Beat</span>
               <div>
-                <span>PC</span> <span>2022-4-20</span>
-              </div>  
+                <span>96</span>
+              </div>
             </div>
-            <div>
-              <p>Genre</p>
-              <span>RPG</span> <span>Hack'n Slash</span> <span>Adventure</span>
+            <div className='rating'>
+              <span>OpenCritic</span>
+              <div>
+                <span>96</span>
+              </div>
             </div>
-            <div>
-              <p>Game Modes</p>
-              <span>Single Player</span>
-            </div>
-            <div>
-              <p>Player Perspective</p>
-              <span>Third Person</span>
-            </div>
-            <div>
-              <p>Age Ratings</p>
-              <span>M</span>
-              <span>18</span>
-              <span>18</span>
-            </div>
-            <div>
-              <span>Genre</span>
-              <span>Actions</span>
-            </div>
+          </div>   
         </div>
-      </div> */}
-      <div className='wrapper'>
-        <h3>How Long to Beat</h3>
-        <div className="level">
-          <div className="level-item has-text-centered">
+        <div className="wrapper">
+          <span className='el-title'>Age Ratings</span>
+          <div className="ratings">
             <div>
-              <p className="heading">Main Story</p>
-              <p className="title">65</p>
-            </div>
-          </div>
-          <div className="level-item has-text-centered">
-            <div>
-              <p className="heading">Main + Sides</p>
-              <p className="title">82</p>
-            </div>
-          </div>
-          <div className="level-item has-text-centered">
-            <div>
-              <p className="heading">Completionist</p>
-              <p className="title">102</p>
-            </div>
-          </div>
-          <div className="level-item has-text-centered">
-            <div>
-              <p className="heading">All Styles</p>
-              <p className="title">84</p>
+              <img src='https://www.igdb.com/icons/rating_icons/esrb/esrb_m.png'></img>
             </div>
           </div>
         </div>
       </div>
-    </>
+      <div className="wrapper">
+        <span className='el-title'>Keywords</span>
+        {keywords && keywords.map((keyword) => (
+          <span className="keyword" key={keyword}>{keyword}</span>
+        ))}
+      </div>
+    </div>
     
   )
 }

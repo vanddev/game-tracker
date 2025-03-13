@@ -1,4 +1,54 @@
 .game-details {
-    margin-top: 1.5rem;
     justify-content: space-between;
+    /* display: flex; */
+    /* gap: 20px; */
+    margin-bottom: 20px;
+}
+
+.game-details .wrapper {
+    margin: 1.5rem 0 ;
+}
+
+.spec .el-title {
+    margin-bottom: 4px;
+    display: inline-block;
+}
+
+.spec-item {
+    margin-bottom: 20px;
+}
+
+.more-info {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.more-info > .wrapper {
+    flex: 1 1 calc(50% - 20px);
+}
+
+.more-info .ratings {
+    display: flex;
+    justify-content: space-around;
+}
+
+.more-info .rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.more-info .rating > div {
+    width: 4rem;
+    height: 4rem;
+    line-height: 2.5rem;
+    font-size: 2.25rem;
+    border-radius: 6px;
+    background-color: green;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4px;
 }

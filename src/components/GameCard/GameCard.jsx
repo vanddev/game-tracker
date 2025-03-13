@@ -1,4 +1,4 @@
-import React from 'react'
+import "./GameCard.css"
 
 const GameCard = ({name, image}) => {
   return (

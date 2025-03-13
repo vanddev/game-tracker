@@ -1,12 +1,11 @@
-section {
-    margin-bottom: 1.5rem;
-}
-
-.keyword {
-    margin-right: .5rem;
-}
-
 .footer {
     height: 300px;
     margin-top: 100px;
+}
+
+.el-title {
+    color: var(--bulma-strong-color);
+    font-weight: var(--bulma-strong-weight);
+    margin-bottom: 20px;
+    display: block;
 }
