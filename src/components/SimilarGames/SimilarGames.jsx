@@ -13,23 +13,23 @@ const SimilarGames = () => {
         },
         widescreen: {
             breakpoint: { max: 1407, min: 1216 },
-            items: 3,
-            slidesToSlide: 3
+            items: 6,
+            slidesToSlide: 6
         },
         desktop: {
             breakpoint: { max: 1215, min: 1024 },
-            items: 2,
-            slidesToSlide: 2
+            items: 5,
+            slidesToSlide: 5
         },
         tablet: {
             breakpoint: { max: 1023, min: 769 },
-            items: 1,
-            slidesToSlide: 1
+            items: 4,
+            slidesToSlide: 4
         },
         mobile: {
             breakpoint: { max: 768, min: 0 },
-            items: 1,
-            slidesToSlide: 1
+            items: 3,
+            slidesToSlide: 3
         }
     };
     return (

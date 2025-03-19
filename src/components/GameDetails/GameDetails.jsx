@@ -86,14 +86,17 @@ const GameDetails = () => {
         <div className="wrapper">
           <span className='el-title'>Age Ratings</span>
           <div className="ratings">
-            <div>
-              <img style={{maxHeight: "80px"}} src='https://www.igdb.com/icons/rating_icons/esrb/esrb_m.png'></img>
+            <div className='rating'>
+              <span>US</span>
+              <img style={{maxHeight: "68px", marginTop: "4px"}} src='https://www.igdb.com/icons/rating_icons/esrb/esrb_m.png'></img>
             </div>
-            <div>
-              <img style={{maxHeight: "80px"}} src='https://www.igdb.com/icons/rating_icons/pegi/pegi_18.png'></img>
+            <div className='rating'>
+              <span>EU</span>
+              <img style={{maxHeight: "68px", marginTop: "4px"}} src='https://www.igdb.com/icons/rating_icons/pegi/pegi_18.png'></img>
             </div>
-            <div>
-              <img style={{maxHeight: "80px"}} src='https://www.igdb.com/icons/rating_icons/class_ind/class_ind_18.png'></img>
+            <div className='rating'>
+              <span>BR</span>
+              <img style={{maxHeight: "68px", marginTop: "4px"}} src='https://www.igdb.com/icons/rating_icons/class_ind/class_ind_18.png'></img>
             </div>
           </div>
         </div>
