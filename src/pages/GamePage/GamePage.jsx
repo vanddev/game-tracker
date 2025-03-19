@@ -79,8 +79,10 @@ const GamePage = () => {
 
   return (
     <>
-      <GameHero hero={hero} logo={logo} colorHandle={dominantColorHandle}></GameHero>
-      <GameHeroActions bgColor={heroActionsBg}></GameHeroActions>
+      <div className="overflow-container">
+        <GameHero hero={hero} logo={logo} colorHandle={dominantColorHandle}></GameHero>
+        <GameHeroActions bgColor={heroActionsBg}></GameHeroActions>
+      </div>
       <GameDetails></GameDetails>
       <SimilarGames></SimilarGames>
       <div className="footer"></div>
