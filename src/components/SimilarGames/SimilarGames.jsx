@@ -6,7 +6,6 @@ import "./SimilarGames.css"
 const SimilarGames = () => {
     const responsive = {
         fullHD: {
-            // the naming can be any, depends on you.
             breakpoint: { min: 1408, max: 9999 },
             items: 6,
             slidesToSlide: 6
@@ -28,8 +27,8 @@ const SimilarGames = () => {
         },
         mobile: {
             breakpoint: { max: 768, min: 0 },
-            items: 3,
-            slidesToSlide: 3
+            items: 2,
+            slidesToSlide: 2
         }
     };
     return (

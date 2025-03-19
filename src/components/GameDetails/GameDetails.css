@@ -9,6 +9,13 @@
     margin: 1.5rem 0 ;
 }
 
+.spec {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .spec .el-title {
     margin-bottom: 4px;
     display: inline-block;
@@ -18,14 +25,21 @@
     margin-bottom: 20px;
 }
 
+.spec-column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 330px;
+}
+
 .more-info {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     gap: 20px;
 }
 
 .more-info > .wrapper {
-    flex: 1 1 calc(50% - 20px);
+    flex: 1 1 calc(440px - 20px);
 }
 
 .more-info .ratings {
@@ -52,3 +66,15 @@
     align-items: center;
     margin-top: 4px;
 }
+
+.rating img {
+    max-height: 68px;
+    margin-top: 4px;
+}
+
+
+@media (max-width: 768px) {
+    .more-info {
+
+    }
+  }

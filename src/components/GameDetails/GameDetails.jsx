@@ -5,46 +5,46 @@ const GameDetails = () => {
   
   return (
     <div className='game-details'>
-      <div id='about' className='wrapper' style={{flexBasis: "768px", flexGrow: "1"}}>
+      <div className='wrapper'>
         <p>God of War is the sequel to God of War III as well as a continuation of the canon God of War chronology. Unlike previous installments, this game focuses on Norse mythology and follows an older and more seasoned Kratos and his son Atreus in the years since the third game. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same.</p>
         <hr/>
-        <div className="spec" style={{display: "flex", width: "100%", justifyContent: "space-between"}}>
-          <div className="spec-column" style={{display: "flex", flexDirection: "column", flex: "0 0 calc(100% / 4 - 10px)"}}>
+        <div className="spec">
+          <div className="spec-column">
             <div className='spec-item'>
               <span className='el-title'>Main Developers</span>
               <ul><li>Santa Monica Studios</li></ul>
             </div>
             <div className='spec-item'>
-              <span className='el-title'>Series</span>
-              <ul><li>God of War</li></ul>
-            </div>
-          </div>
-          <div className="spec-column" style={{display: "flex", flexDirection: "column", flex: "0 0 calc(100% / 4 - 10px)"}}>
-            <div className='spec-item'>
               <span className='el-title'>Publishers</span>
               <ul><li>Sony</li></ul>
+            </div>
+          </div>          
+          <div className="spec-column">
+            <div className='spec-item'>
+              <span className='el-title'>Game Modes</span>
+              <ul><li>Single Player</li></ul>
+            </div>
+            <div className='spec-item'>
+              <span className='el-title'>Players Perspective</span>
+              <ul>
+                <li>Third Person</li>
+              </ul>
+            </div>
+          </div>
+          <div className="spec-column">
+            <div className='spec-item'>
+              <span className='el-title'>Series</span>
+              <ul><li>God of War</li></ul>
             </div>
             <div className='spec-item'>
               <span className='el-title'>Is Spin-off of</span>
               <ul><li>-</li></ul>
             </div>
           </div>
-          <div className="spec-column" style={{display: "flex", flexDirection: "column", flex: "0 0 calc(100% / 4 - 10px)"}}>
-            <div className='spec-item'>
-              <span className='el-title'>Game Modes</span>
-              <ul><li>Single Player</li></ul>
-            </div>
-            <div className='spec-item'>
+          <div className="spec-column">
+          <div className='spec-item'>
               <span className='el-title'>Franchises</span>
               <ul><li>God of War</li></ul>
-            </div>
-          </div>
-          <div className="spec-column" style={{display: "flex", flexDirection: "column", flex: "0 0 calc(100% / 4 - 10px)"}}>
-            <div className='spec-item'>
-              <span className='el-title'>Players Perspective</span>
-              <ul>
-                <li>Third Person</li>
-              </ul>
             </div>
             <div className='spec-item'>
               <span className='el-title'>Releases</span>
@@ -70,7 +70,7 @@ const GameDetails = () => {
               </div>
             </div>
             <div className='rating'>
-              <span>How Long To Beat</span>
+              <span>HLTB</span>
               <div>
                 <span>96</span>
               </div>
@@ -88,15 +88,15 @@ const GameDetails = () => {
           <div className="ratings">
             <div className='rating'>
               <span>US</span>
-              <img style={{maxHeight: "68px", marginTop: "4px"}} src='https://www.igdb.com/icons/rating_icons/esrb/esrb_m.png'></img>
+              <img src='https://www.igdb.com/icons/rating_icons/esrb/esrb_m.png'></img>
             </div>
             <div className='rating'>
               <span>EU</span>
-              <img style={{maxHeight: "68px", marginTop: "4px"}} src='https://www.igdb.com/icons/rating_icons/pegi/pegi_18.png'></img>
+              <img src='https://www.igdb.com/icons/rating_icons/pegi/pegi_18.png'></img>
             </div>
             <div className='rating'>
               <span>BR</span>
-              <img style={{maxHeight: "68px", marginTop: "4px"}} src='https://www.igdb.com/icons/rating_icons/class_ind/class_ind_18.png'></img>
+              <img src='https://www.igdb.com/icons/rating_icons/class_ind/class_ind_18.png'></img>
             </div>
           </div>
         </div>
