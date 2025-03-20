@@ -4,6 +4,7 @@
 body {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   line-height: 1.5;
+  background-color: hsl(220, 12%, 8%);
 }
 
 main {
