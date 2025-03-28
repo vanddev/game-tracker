@@ -1,23 +1,39 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import './GameHero.css'
 import { average } from 'color.js'
 
 const GameHero = ({ hero, logo, colorHandle }) => {
+  const [isBgLoaded, setBgLoaded] = useState(false)
+  const [getImage, setImage] = useState(null)
+  
+  useEffect(() => {
+    const img = new Image()
+    img.src = hero.url
+    img.onload = () => {
+      setBgLoaded(true)
 
-  const onLoadHandle = async (e) => {
-    const image = e.currentTarget
-
-    const averageColor = await average(image, {
+      average(hero.url, {
         amount: 1,
         format: "array"
-    });
+      }).then((averageColor) => {colorHandle(averageColor)})
+    }
 
-    colorHandle(averageColor)
-  }
+    img.onerror = () => {
+      console.error('Failed to load the background image')
+    }
+
+    setImage(img)
+
+    //Cleanup
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+  
+  }, [hero])
 
   return (
-    <div className="hero-container">
-      <img src={hero.url} alt={hero.name} onLoad={onLoadHandle}/>
+    <div className="hero-container" style={{backgroundImage: `url(${hero.url})`}}>
       <img src={logo.url} className="logo" />
       <div className="hltb">
         <div className='htlb-content'>

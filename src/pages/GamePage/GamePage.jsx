@@ -8,7 +8,7 @@ import Color from "color"
 
 
 const GamePage = () => {
-  const hero = {url: "./hero-spider.jpg", name: "God of War"}
+  const hero = {url: "./hero.png", name: "God of War"}
   const logo = {url: "./logo.png"}
   const [heroActionsBg, setHeroActionsBg] = useState([])
 

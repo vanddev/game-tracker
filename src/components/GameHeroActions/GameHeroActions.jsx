@@ -1,7 +1,7 @@
 import './GameHeroActions.css'
 import Icon from '@mdi/react';
-import { mdiChevronDown, mdiGuyFawkesMask } from '@mdi/js';
-import { useCallback, useState, useMemo } from 'react';
+import { mdiChevronDown } from '@mdi/js';
+import { useState } from 'react';
 
 const GameHeroActions = ( { bgColor } ) => {
   
@@ -18,7 +18,6 @@ const GameHeroActions = ( { bgColor } ) => {
       setDropdownActive(false)
     }
   }
-  
 
   return (
     
