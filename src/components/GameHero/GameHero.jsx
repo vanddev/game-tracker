@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import './GameHero.css'
 import { average } from 'color.js'
+import useMediaQuery from '../../hooks/useMediaQuery'
 
-const GameHero = ({ hero, logo, colorHandle }) => {
+const GameHero = ({ hero, logo, cover, colorHandle }) => {
+  const isDesktop = useMediaQuery('(min-width: 768px)')
   const [isBgLoaded, setBgLoaded] = useState(false)
   const [getImage, setImage] = useState(null)
   
@@ -34,13 +36,25 @@ const GameHero = ({ hero, logo, colorHandle }) => {
 
   return (
     <div className="hero-container" style={{backgroundImage: `url(${hero.url})`}}>
-      <img src={logo.url} className="logo" />
-      <div className="hltb">
-        <div className='htlb-content'>
-            <div><p>Main Story</p><p>65 Hours</p></div>
-            <div><p>Main + Sides</p><p>82 Hours</p></div>
-            <div><p>Completionist</p><p>102 Hours</p></div>
-            <div><p>All Styles</p><p>84 Hours</p></div>
+      <div className="hero-filter">
+        <div  className="capsule" >
+          { isDesktop ? 
+            (
+              <img src={logo.url} className='logo' width={'300'}/>
+            ) : (
+              <>
+                <img src={cover.url} className='cover' width={'100'} />
+                <h1>Assassins Creed Valhalla</h1>
+              </>
+            ) }
+        </div>
+        <div className="hltb">
+          <div className='htlb-content'>
+              <div><p>Main Story</p><p>65 Hours</p></div>
+              <div><p>Main + Sides</p><p>82 Hours</p></div>
+              <div><p>Completionist</p><p>102 Hours</p></div>
+              <div><p>All Styles</p><p>84 Hours</p></div>
+          </div>
         </div>
       </div>
     </div>

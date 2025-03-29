@@ -8,8 +8,9 @@ import Color from "color"
 
 
 const GamePage = () => {
-  const hero = {url: "./hero.png", name: "God of War"}
-  const logo = {url: "./logo.png"}
+  const hero = {url: "./library_hero_2x.jpg", name: "God of War"}
+  const logo = {url: "./logo_2x.png"}
+  const cover = {url: "./library_2x.jpg"}
   const [heroActionsBg, setHeroActionsBg] = useState([])
 
   const rgbToHsl = (r, g, b) => {
@@ -80,7 +81,7 @@ const GamePage = () => {
   return (
     <>
       <div className="overflow-container">
-        <GameHero hero={hero} logo={logo} colorHandle={dominantColorHandle}></GameHero>
+        <GameHero hero={hero} logo={logo} cover={cover} colorHandle={dominantColorHandle}></GameHero>
         <GameHeroActions bgColor={heroActionsBg}></GameHeroActions>
       </div>
       <GameDetails></GameDetails>

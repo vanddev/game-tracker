@@ -3,16 +3,19 @@
     background-size: cover;
     width: 100%;
     background-position: center center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
-.hero-container .logo {
-    margin-top: calc(4%);
-    margin-left: calc(4%);
-    max-height: 300px;
-    max-width: 300px;
+.hero-container .capsule {
+    margin-top: 40px;
+    margin-left: 40px;
+    display: flex;
+    /* max-height: 300px;
+    max-width: 300px; */
+}
+
+.hero-container .cover {
+    /* display: none; */
+    /* aspect-ratio: 3 / 4; */
 }
 
 .hero-container .hltb {
@@ -32,4 +35,33 @@
 .hero-container .htlb-content > div {
     text-align: center;
     color: white;
+}
+
+.hero-container .hero-filter {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hero-container .capsule h1 {
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .hero-container .hero-filter {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    /* .hero-container .cover {
+        display: initial;
+    }
+
+    .hero-container .logo {
+        display: none;
+    } */
 }
