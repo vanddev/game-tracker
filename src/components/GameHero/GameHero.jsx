@@ -43,19 +43,19 @@ const GameHero = ({ hero, logo, cover, colorHandle }) => {
               <img src={logo.url} className='logo' width={'300'}/>
             ) : (
               <>
-                <img src={cover.url} className='cover' width={'100'} />
                 <h1>Assassins Creed Valhalla</h1>
+                <img src={cover.url} className='cover' width={'500'} />
               </>
             ) }
         </div>
-        <div className="hltb">
+        { isDesktop && <div className="hltb">
           <div className='htlb-content'>
               <div><p>Main Story</p><p>65 Hours</p></div>
               <div><p>Main + Sides</p><p>82 Hours</p></div>
               <div><p>Completionist</p><p>102 Hours</p></div>
               <div><p>All Styles</p><p>84 Hours</p></div>
           </div>
-        </div>
+        </div>}
       </div>
     </div>
   )
