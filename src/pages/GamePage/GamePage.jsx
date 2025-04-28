@@ -5,13 +5,17 @@ import GameDetails from "../../components/GameDetails/GameDetails"
 import SimilarGames from "../../components/SimilarGames/SimilarGames"
 import { useCallback, useState } from "react"
 import Color from "color"
+import { useResponsiveContext } from '../../context/ResponsiveContext'
+
 
 
 const GamePage = () => {
-  const hero = {url: "./library_hero_2x.jpg", name: "God of War"}
+  const hero = {url: "./library_hero_2x.jpg", name: "Assassin's Creed Valhalla"}
   const logo = {url: "./logo_2x.png"}
   const cover = {url: "./library_2x.jpg"}
   const [heroActionsBg, setHeroActionsBg] = useState([])
+
+  const { isMobile } = useResponsiveContext()
 
   const rgbToHsl = (r, g, b) => {
     r /= 255, g /= 255, b /= 255;
@@ -77,11 +81,24 @@ const GamePage = () => {
     setHeroActionsBg(backgroundColor)
   }
 
+  const htlb = {
+    "main_story": "65 Hours", 
+    "main_plus_sides": "82 Hours", 
+    "completionist": "102 Hours", 
+    "all_styles": "84 Hours"
+  }
+
 
   return (
     <>
       <div className="overflow-container">
-        <GameHero hero={hero} logo={logo} cover={cover} colorHandle={dominantColorHandle}></GameHero>
+        <GameHero game_name={hero.name}
+                  background_image={hero.url}
+                  foreground_image={ isMobile ? cover.url : logo.url }
+                  content_style={ isMobile ? "cover" : "logo" }
+                  colorHandle={dominantColorHandle}
+                  hltb={isMobile ? null : htlb}>
+        </GameHero>
         <GameHeroActions bgColor={heroActionsBg}></GameHeroActions>
       </div>
       <GameDetails></GameDetails>

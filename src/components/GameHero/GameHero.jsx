@@ -1,20 +1,14 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import './GameHero.css'
 import { average } from 'color.js'
-import useMediaQuery from '../../hooks/useMediaQuery'
 
-const GameHero = ({ hero, logo, cover, colorHandle }) => {
-  const isDesktop = useMediaQuery('(min-width: 768px)')
-  const [isBgLoaded, setBgLoaded] = useState(false)
-  const [getImage, setImage] = useState(null)
-  
+
+const GameHero = ({ game_name, background_image, foreground_image, content_style, hltb, colorHandle }) => {
   useEffect(() => {
     const img = new Image()
-    img.src = hero.url
+    img.src = background_image
     img.onload = () => {
-      setBgLoaded(true)
-
-      average(hero.url, {
+      average(background_image, {
         amount: 1,
         format: "array"
       }).then((averageColor) => {colorHandle(averageColor)})
@@ -24,38 +18,29 @@ const GameHero = ({ hero, logo, cover, colorHandle }) => {
       console.error('Failed to load the background image')
     }
 
-    setImage(img)
-
     //Cleanup
     return () => {
       img.onload = null;
       img.onerror = null;
     };
   
-  }, [hero])
+  }, [background_image])
 
   return (
-    <div className="hero-container" style={{backgroundImage: `url(${hero.url})`}}>
+    <div className="hero-container" style={{backgroundImage: `url(${background_image})`}}>
       <div className="hero-filter">
         <div  className="capsule" >
-          { isDesktop ? 
-            (
-              <img src={logo.url} className='logo' width={'300'}/>
-            ) : (
-              <>
-                <h1>Assassins Creed Valhalla</h1>
-                <img src={cover.url} className='cover' width={'500'} />
-              </>
-            ) }
+          { content_style == 'cover' && <h1>{game_name}</h1> }
+          <img src={foreground_image} className={content_style} width={ content_style == 'cover' ? '500' : '300'} />
         </div>
-        { isDesktop && <div className="hltb">
+        { hltb && <div className="hltb">
           <div className='htlb-content'>
-              <div><p>Main Story</p><p>65 Hours</p></div>
-              <div><p>Main + Sides</p><p>82 Hours</p></div>
-              <div><p>Completionist</p><p>102 Hours</p></div>
-              <div><p>All Styles</p><p>84 Hours</p></div>
+              <div><p>Main Story</p><p>{hltb["main_story"]}</p></div>
+              <div><p>Main + Sides</p><p>{hltb["main_plus_sides"]}</p></div>
+              <div><p>Completionist</p><p>{hltb["completionist"]}</p></div>
+              <div><p>All Styles</p><p>{hltb["all_styles"]}</p></div>
           </div>
-        </div>}
+        </div> }
       </div>
     </div>
   )

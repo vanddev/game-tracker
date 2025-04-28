@@ -40,10 +40,9 @@
 }
 
 .hero-container .capsule h1 {
-    margin-left: 20px;
-    margin-top: 20px;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 800;
+    margin-bottom: 14px;
     color: white;
 }
 
