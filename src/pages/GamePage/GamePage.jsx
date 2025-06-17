@@ -99,7 +99,7 @@ const GamePage = () => {
                   colorHandle={dominantColorHandle}
                   hltb={isMobile ? null : htlb}>
         </GameHero>
-        <GameHeroActions bgColor={heroActionsBg}></GameHeroActions>
+        <GameHeroActions bgColor={heroActionsBg} isFloating={isMobile}></GameHeroActions>
       </div>
       <GameDetails></GameDetails>
       <SimilarGames></SimilarGames>

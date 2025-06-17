@@ -5,3 +5,14 @@
     padding: 20px;
     align-items: center;
 }
+
+.hero-actions .floating-button {
+    position: fixed;
+    bottom: 76px;
+    right: 36px;
+    z-index: 1100 ;
+}
+
+.hero-actions .floating-button .button {
+    padding: 14px;
+}
