@@ -55,15 +55,15 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
           <div className={ isFloatingButtonActive ? "dark-film is-active" : "dark-film" }  onClick={handleFloatingButtonClick}/>
           <div className={ isFloatingButtonActive ? "action-list is-active" : "action-list" }>
               <button className='action'>
-                <Icon path={mdiCheckCircleOutline} size={1.4}></Icon>
+                <Icon path={mdiCheckCircleOutline} size={1.2}></Icon>
                 <span>Finished</span>
               </button>
               <button className='action'>
-                <Icon path={mdiClockOutline} size={1.4}></Icon>
+                <Icon path={mdiClockOutline} size={1.2}></Icon>
                 <span>AAA</span>
               </button>
               <button className='action'>
-                <Icon path={mdiThumbDownOutline} size={1.4}></Icon>
+                <Icon path={mdiThumbDownOutline} size={1.2}></Icon>
                 <span>Dropped</span>
               </button>
             </div> 
