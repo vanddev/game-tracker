@@ -66,7 +66,7 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
                 <Icon path={mdiThumbDownOutline} size={1.4}></Icon>
                 <span href="#">Dropped</span>
               </button>
-            </div>
+            </div> 
         </> 
         : 
         <div className={isDropdownActive ? "dropdown is-active" : "dropdown"}>
