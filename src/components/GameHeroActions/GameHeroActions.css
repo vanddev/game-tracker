@@ -13,6 +13,57 @@
     z-index: 1100 ;
 }
 
+.hero-actions .dropdown-item {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    gap: 8px;
+}
+
+.hero-actions .dropdown-item .icon {
+    flex-basis: 24px;
+}
+
+.hero-actions .dark-film {
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    background-color: rgba(0 0 0 / 80%);
+    display: none;
+}
+
+.hero-actions .dark-film.is-active {
+    display: block;
+}
+
 .hero-actions .floating-button .button {
-    padding: 14px;
+    padding: 12px;
+}
+
+.hero-actions .action-list.is-active {
+    display: flex;
+}
+
+.hero-actions .action-list {
+    display: none;
+    padding: 20px;
+    gap: 20px;
+    flex-wrap: nowrap;
+    position: fixed;
+    inset: auto 0px 0px 0px;
+    z-index: 2500;
+    background-color: var(--bg-color);
+}
+
+.hero-actions .action-list .action{
+    flex: calc(100% / 3) 1 1;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 20px;
 }
