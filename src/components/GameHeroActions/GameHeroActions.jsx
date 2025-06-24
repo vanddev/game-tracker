@@ -8,24 +8,30 @@ import { mdiThumbDownOutline } from '@mdi/js';
 import { useState } from 'react';
 
 const GameHeroActions = ( { bgColor, isFloating } ) => {
-  
-  const [chevronAngle, setChevronAngle] = useState(0)
   const [isDropdownActive, setDropdownActive] = useState(false)
   const [isFloatingButtonActive, setFloatingButtonActive] = useState(false)
+  const [floatingButtonIcon, setFloatingButtonIcon] = useState(mdiHeartPlus)
+  const [currentStatus, setCurrentStatus] = useState(null)
 
   const changeDropdownStatus = () => {
-    if (chevronAngle == 0){
-      setChevronAngle(180)
-      setDropdownActive(true)
-    } 
-    else {
-      setChevronAngle(0)
-      setDropdownActive(false)
-    }
+    setDropdownActive(!isDropdownActive)
   }
 
   const handleFloatingButtonClick = () => {
     setFloatingButtonActive(!isFloatingButtonActive);
+  }
+
+  const statusList = [
+    { icon: mdiCheckCircleOutline, label: 'Finished' },
+    { icon: mdiClockOutline, label: 'Want Play' },
+    { icon: mdiThumbDownOutline, label: 'Dropped' }
+  ];
+
+  const handleStatusChange = (newStatus) => {
+    setCurrentStatus(newStatus);
+    setFloatingButtonIcon(newStatus.icon);
+    setFloatingButtonActive(false);
+    setDropdownActive(false);
   }
 
   return (
@@ -49,40 +55,41 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
         <>
           <div className="floating-button">
             <button className="button is-primary is-rounded" onClick={handleFloatingButtonClick}>
-              <Icon path={mdiHeartPlus} size={1.2} />
+              <Icon path={floatingButtonIcon} size={1.2} />
             </button>
           </div>
           <div className={ isFloatingButtonActive ? "dark-film is-active" : "dark-film" }  onClick={handleFloatingButtonClick}/>
           <div className={ isFloatingButtonActive ? "action-list is-active" : "action-list" }>
-              <button className='action'>
-                <Icon path={mdiCheckCircleOutline} size={1.2}></Icon>
-                <span>Finished</span>
-              </button>
-              <button className='action'>
-                <Icon path={mdiClockOutline} size={1.2}></Icon>
-                <span>Want Play</span>
-              </button>
-              <button className='action'>
-                <Icon path={mdiThumbDownOutline} size={1.2}></Icon>
-                <span>Dropped</span>
-              </button>
+              {statusList.map((status, index) => (
+                <button key={index} className='action' onClick={() => handleStatusChange(status)}>
+                  <Icon path={status.icon} size={1.2}></Icon>
+                  <span>{status.label}</span>
+                </button>
+              ))}
             </div> 
         </> 
         : 
         <div className={isDropdownActive ? "dropdown is-active" : "dropdown"}>
           <div className="dropdown-trigger">
             <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={changeDropdownStatus}>
-              <span>Mark as</span>
+              <span>{currentStatus ? currentStatus.label : 'Mark as'}</span>
               <span className="icon is-small">
-                <Icon path={mdiChevronDown} size={0.5} rotate={chevronAngle}></Icon>
+                <Icon path={mdiChevronDown} size={0.5} vertical={isDropdownActive}></Icon>
               </span>
             </button>
           </div>
           <div className="dropdown-menu" id="dropdown-menu" role="menu">
             <div className="dropdown-content">
-              <a href="#" className="dropdown-item"><div className="icon"><Icon path={mdiCheckCircleOutline} size={1}></Icon></div>Finished</a>
-              <a href="#" className="dropdown-item"><div className="icon"><Icon path={mdiClockOutline} size={1}></Icon></div>Want Play</a>
-              <a href="#" className="dropdown-item"><div className="icon"><Icon path={mdiThumbDownOutline} size={1}></Icon></div>Dropped</a>
+              {statusList.map((status, index) => (
+                <>
+                  <a key={index} href="#" className="dropdown-item" onClick={() => handleStatusChange(status)}>
+                    <div className="icon">
+                      <Icon path={status.icon} size={1}></Icon>
+                    </div>
+                    {status.label}
+                  </a>
+                </>
+              ))}
             </div>
           </div>
         </div> 
