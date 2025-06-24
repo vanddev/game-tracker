@@ -60,11 +60,11 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
               </button>
               <button className='action'>
                 <Icon path={mdiClockOutline} size={1.4}></Icon>
-                <span href="#">To Be Played</span>
+                <span>AAA</span>
               </button>
               <button className='action'>
                 <Icon path={mdiThumbDownOutline} size={1.4}></Icon>
-                <span href="#">Dropped</span>
+                <span>Dropped</span>
               </button>
             </div> 
         </> 
