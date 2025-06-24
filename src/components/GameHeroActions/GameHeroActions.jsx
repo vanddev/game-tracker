@@ -60,7 +60,7 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
               </button>
               <button className='action'>
                 <Icon path={mdiClockOutline} size={1.2}></Icon>
-                <span>AAA</span>
+                <span>Want Play</span>
               </button>
               <button className='action'>
                 <Icon path={mdiThumbDownOutline} size={1.2}></Icon>
@@ -81,7 +81,7 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
           <div className="dropdown-menu" id="dropdown-menu" role="menu">
             <div className="dropdown-content">
               <a href="#" className="dropdown-item"><div className="icon"><Icon path={mdiCheckCircleOutline} size={1}></Icon></div>Finished</a>
-              <a href="#" className="dropdown-item"><div className="icon"><Icon path={mdiClockOutline} size={1}></Icon></div>To Be Played</a>
+              <a href="#" className="dropdown-item"><div className="icon"><Icon path={mdiClockOutline} size={1}></Icon></div>Want Play</a>
               <a href="#" className="dropdown-item"><div className="icon"><Icon path={mdiThumbDownOutline} size={1}></Icon></div>Dropped</a>
             </div>
           </div>
