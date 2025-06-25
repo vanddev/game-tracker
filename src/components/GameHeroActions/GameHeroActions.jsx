@@ -79,6 +79,11 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
           {statusList.map((status, index) => (
             <button
               key={index}
+              title={
+                currentStatus && currentStatus.label === status.label
+                  ? `Remove ${status.label}`
+                  : `Mark as ${status.label}`
+              }
               className={
                 currentStatus && currentStatus.label === status.label
                   ? `button is-light`
