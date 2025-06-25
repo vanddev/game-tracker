@@ -22,13 +22,18 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
   }
 
   const statusList = [
-    { icon: mdiCheckCircleOutline, label: 'Finished' },
-    { icon: mdiClockOutline, label: 'Want Play' },
-    { icon: mdiThumbDownOutline, label: 'Dropped' }
+    { icon: mdiCheckCircleOutline, label: 'Finished', class: 'is-success' },
+    { icon: mdiClockOutline, label: 'Want Play', class: 'is-warning' },
+    { icon: mdiThumbDownOutline, label: 'Dropped', class: 'is-danger' },
   ];
 
   const handleStatusChange = (newStatus) => {
-    setCurrentStatus(newStatus);
+    if (newStatus.label === currentStatus?.label) {
+      setCurrentStatus(null);
+    } else { 
+      setCurrentStatus(newStatus);
+    }
+    
     setFloatingButtonIcon(newStatus.icon);
     setFloatingButtonActive(false);
     setDropdownActive(false);
@@ -68,8 +73,27 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
               ))}
             </div> 
         </> 
-        : 
-        <div className={isDropdownActive ? "dropdown is-active" : "dropdown"}>
+        :
+        <>
+        <div className="actions-buttons">
+          {statusList.map((status, index) => (
+            <button
+              key={index}
+              className={
+                currentStatus && currentStatus.label === status.label
+                  ? `button ${status.class}`
+                  : `button ${status.class} is-outlined`
+              }
+              onClick={() => handleStatusChange(status)}
+            >
+              <div className="icon">
+                <Icon path={status.icon} size={1}></Icon>
+              </div>
+              <span>{status.label}</span>
+            </button>
+          ))}
+        </div>
+        {/* <div className={isDropdownActive ? "dropdown is-active" : "dropdown"}>
           <div className="dropdown-trigger">
             <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={changeDropdownStatus}>
               <span>{currentStatus ? currentStatus.label : 'Mark as'}</span>
@@ -92,7 +116,8 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
               ))}
             </div>
           </div>
-        </div> 
+        </div>  */}
+        </>
       }
     </div>
     

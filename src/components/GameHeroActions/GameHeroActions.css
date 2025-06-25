@@ -43,6 +43,11 @@
     padding: 12px;
 }
 
+.hero-actions .actions-buttons {
+    display: flex;
+    gap: 10px;
+}
+
 .hero-actions .action-list.is-active {
     display: flex;
 }

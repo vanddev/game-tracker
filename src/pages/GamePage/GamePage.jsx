@@ -10,7 +10,7 @@ import { useResponsiveContext } from '../../context/ResponsiveContext'
 
 
 const GamePage = () => {
-  const hero = {url: "./library_hero_2x.jpg", name: "Assassin's Creed Valhalla"}
+  const hero = {url: "./hero-spider.jpg", name: "Assassin's Creed Valhalla"}
   const logo = {url: "./logo_2x.png"}
   const cover = {url: "./library_2x.jpg"}
   const [heroActionsBg, setHeroActionsBg] = useState([])
