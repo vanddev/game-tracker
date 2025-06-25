@@ -75,7 +75,7 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
         </> 
         :
         <>
-        <div className="actions-buttons">
+        <div className="buttons has-addons">
           {statusList.map((status, index) => (
             <button
               key={index}
