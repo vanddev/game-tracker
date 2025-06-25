@@ -81,8 +81,8 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
               key={index}
               className={
                 currentStatus && currentStatus.label === status.label
-                  ? `button ${status.class}`
-                  : `button ${status.class} is-outlined`
+                  ? `button is-light`
+                  : `button`
               }
               onClick={() => handleStatusChange(status)}
             >
@@ -93,30 +93,6 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
             </button>
           ))}
         </div>
-        {/* <div className={isDropdownActive ? "dropdown is-active" : "dropdown"}>
-          <div className="dropdown-trigger">
-            <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={changeDropdownStatus}>
-              <span>{currentStatus ? currentStatus.label : 'Mark as'}</span>
-              <span className="icon is-small">
-                <Icon path={mdiChevronDown} size={0.5} vertical={isDropdownActive}></Icon>
-              </span>
-            </button>
-          </div>
-          <div className="dropdown-menu" id="dropdown-menu" role="menu">
-            <div className="dropdown-content">
-              {statusList.map((status, index) => (
-                <>
-                  <a key={index} href="#" className="dropdown-item" onClick={() => handleStatusChange(status)}>
-                    <div className="icon">
-                      <Icon path={status.icon} size={1}></Icon>
-                    </div>
-                    {status.label}
-                  </a>
-                </>
-              ))}
-            </div>
-          </div>
-        </div>  */}
         </>
       }
     </div>
