@@ -13,6 +13,8 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
   const [floatingButtonIcon, setFloatingButtonIcon] = useState(mdiHeartPlus)
   const [currentStatus, setCurrentStatus] = useState(null)
 
+  const defaultFloatingButtonIcon = mdiHeartPlus
+
   const changeDropdownStatus = () => {
     setDropdownActive(!isDropdownActive)
   }
@@ -30,11 +32,12 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
   const handleStatusChange = (newStatus) => {
     if (newStatus.label === currentStatus?.label) {
       setCurrentStatus(null);
+      setFloatingButtonIcon(defaultFloatingButtonIcon);
     } else { 
       setCurrentStatus(newStatus);
+      setFloatingButtonIcon(newStatus.icon);
     }
     
-    setFloatingButtonIcon(newStatus.icon);
     setFloatingButtonActive(false);
     setDropdownActive(false);
   }
@@ -66,7 +69,11 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
           <div className={ isFloatingButtonActive ? "dark-film is-active" : "dark-film" }  onClick={handleFloatingButtonClick}/>
           <div className={ isFloatingButtonActive ? "action-list is-active" : "action-list" }>
               {statusList.map((status, index) => (
-                <button key={index} className='action' onClick={() => handleStatusChange(status)}>
+                <button key={index} className={
+                  currentStatus && currentStatus.label === status.label
+                  ? `action is-selected`
+                  : `action`
+                } onClick={() => handleStatusChange(status)}>
                   <Icon path={status.icon} size={1.2}></Icon>
                   <span>{status.label}</span>
                 </button>
