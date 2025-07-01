@@ -43,6 +43,11 @@
     padding: 12px;
 }
 
+.hero-actions .actions-buttons {
+    display: flex;
+    gap: 10px;
+}
+
 .hero-actions .action-list.is-active {
     display: flex;
 }
@@ -65,5 +70,9 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    font-size: 20px;
+    font-size: 18px;
+}
+
+.hero-actions .action-list .action.is-selected {
+    color: rgb(0, 209, 178)
 }
