@@ -1,31 +1,44 @@
 import './GameHeroActions.css'
 import Icon from '@mdi/react';
 import { mdiChevronDown } from '@mdi/js';
-import { mdiHeartPlus } from '@mdi/js';
+import { mdiStar } from '@mdi/js';
 import { mdiCheckCircleOutline } from '@mdi/js';
 import { mdiClockOutline } from '@mdi/js';
 import { mdiThumbDownOutline } from '@mdi/js';
 import { useState } from 'react';
 
 const GameHeroActions = ( { bgColor, isFloating } ) => {
-  
-  const [chevronAngle, setChevronAngle] = useState(0)
+  const defaultFloatingButtonIcon = mdiStar
   const [isDropdownActive, setDropdownActive] = useState(false)
   const [isFloatingButtonActive, setFloatingButtonActive] = useState(false)
+  const [floatingButtonIcon, setFloatingButtonIcon] = useState(defaultFloatingButtonIcon)
+  const [currentStatus, setCurrentStatus] = useState(null)
 
   const changeDropdownStatus = () => {
-    if (chevronAngle == 0){
-      setChevronAngle(180)
-      setDropdownActive(true)
-    } 
-    else {
-      setChevronAngle(0)
-      setDropdownActive(false)
-    }
+    setDropdownActive(!isDropdownActive)
   }
 
   const handleFloatingButtonClick = () => {
     setFloatingButtonActive(!isFloatingButtonActive);
+  }
+
+  const statusList = [
+    { icon: mdiCheckCircleOutline, label: 'Finished', class: 'is-success' },
+    { icon: mdiClockOutline, label: 'Want Play', class: 'is-warning' },
+    { icon: mdiThumbDownOutline, label: 'Dropped', class: 'is-danger' },
+  ];
+
+  const handleStatusChange = (newStatus) => {
+    if (newStatus.label === currentStatus?.label) {
+      setCurrentStatus(null);
+      setFloatingButtonIcon(defaultFloatingButtonIcon);
+    } else { 
+      setCurrentStatus(newStatus);
+      setFloatingButtonIcon(newStatus.icon);
+    }
+    
+    setFloatingButtonActive(false);
+    setDropdownActive(false);
   }
 
   return (
@@ -49,43 +62,49 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
         <>
           <div className="floating-button">
             <button className="button is-primary is-rounded" onClick={handleFloatingButtonClick}>
-              <Icon path={mdiHeartPlus} size={1.2} />
+              <Icon path={floatingButtonIcon} size={1.2} />
             </button>
           </div>
           <div className={ isFloatingButtonActive ? "dark-film is-active" : "dark-film" }  onClick={handleFloatingButtonClick}/>
           <div className={ isFloatingButtonActive ? "action-list is-active" : "action-list" }>
-              <button className='action'>
-                <Icon path={mdiCheckCircleOutline} size={2}></Icon>
-                <span>Finished</span>
-              </button>
-              <button className='action'>
-                <Icon path={mdiClockOutline} size={2}></Icon>
-                <span href="#">To Be Played</span>
-              </button>
-              <button className='action'>
-                <Icon path={mdiThumbDownOutline} size={2}></Icon>
-                <span href="#">Dropped</span>
-              </button>
-            </div>
+              {statusList.map((status, index) => (
+                <button key={index} className={
+                  currentStatus && currentStatus.label === status.label
+                  ? `action is-selected`
+                  : `action`
+                } onClick={() => handleStatusChange(status)}>
+                  <Icon path={status.icon} size={1.2}></Icon>
+                  <span>{status.label}</span>
+                </button>
+              ))}
+            </div> 
         </> 
-        : 
-        <div className={isDropdownActive ? "dropdown is-active" : "dropdown"}>
-          <div className="dropdown-trigger">
-            <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={changeDropdownStatus}>
-              <span>Mark as</span>
-              <span className="icon is-small">
-                <Icon path={mdiChevronDown} size={0.5} rotate={chevronAngle}></Icon>
-              </span>
+        :
+        <>
+        <div className="buttons has-addons">
+          {statusList.map((status, index) => (
+            <button
+              key={index}
+              title={
+                currentStatus && currentStatus.label === status.label
+                  ? `Remove ${status.label}`
+                  : `Mark as ${status.label}`
+              }
+              className={
+                currentStatus && currentStatus.label === status.label
+                  ? `button is-light`
+                  : `button`
+              }
+              onClick={() => handleStatusChange(status)}
+            >
+              <div className="icon">
+                <Icon path={status.icon} size={1}></Icon>
+              </div>
+              <span>{status.label}</span>
             </button>
-          </div>
-          <div className="dropdown-menu" id="dropdown-menu" role="menu">
-            <div className="dropdown-content">
-              <a href="#" className="dropdown-item"><div className="icon"><Icon path={mdiCheckCircleOutline} size={1}></Icon></div>Finished</a>
-              <a href="#" className="dropdown-item"><div className="icon"><Icon path={mdiClockOutline} size={1}></Icon></div>To Be Played</a>
-              <a href="#" className="dropdown-item"><div className="icon"><Icon path={mdiThumbDownOutline} size={1}></Icon></div>Dropped</a>
-            </div>
-          </div>
-        </div> 
+          ))}
+        </div>
+        </>
       }
     </div>
     
