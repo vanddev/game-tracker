@@ -10,10 +10,6 @@
     left: calc(2%);
 }
 
-.carousel-container .card {
-    box-shadow: none;
-}
-
-.carousel-container .card-content {
-    background-color: #1a1a1c;
+.react-multi-carousel-list {
+    padding-bottom: 2px;
 }

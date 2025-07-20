@@ -1,0 +1,35 @@
+.search_bar {
+    margin-bottom: 10px;
+}
+
+.search_icon {
+    margin-right: 10px;
+    color: var(--bulma-strong-color);
+}
+
+.results {
+    width: 100%;
+    position: relative;
+    margin-top: 10px;
+}
+
+.results ul {
+    position: absolute;
+    z-index: 2000;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    inset: 0px 0px auto 0px;
+    padding: 12px 10px;
+    background-color: var(--bg-color);
+}
+
+.results li {
+    background-color: var(--dark-light-bg-color);
+    margin: 6px 0;
+}
+
+.is-hidden {
+    display: none;
+}

@@ -3,8 +3,8 @@ import Icon from '@mdi/react';
 import { mdiChevronDown } from '@mdi/js';
 import { mdiStar } from '@mdi/js';
 import { mdiCheckCircleOutline } from '@mdi/js';
-import { mdiClockOutline } from '@mdi/js';
 import { mdiThumbDownOutline } from '@mdi/js';
+import { mdiHeart } from '@mdi/js';
 import { useState } from 'react';
 
 const GameHeroActions = ( { bgColor, isFloating } ) => {
@@ -24,7 +24,7 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
 
   const statusList = [
     { icon: mdiCheckCircleOutline, label: 'Finished', class: 'is-success' },
-    { icon: mdiClockOutline, label: 'Want Play', class: 'is-warning' },
+    { icon: mdiHeart, label: 'Want Play', class: 'is-warning' },
     { icon: mdiThumbDownOutline, label: 'Dropped', class: 'is-danger' },
   ];
 
