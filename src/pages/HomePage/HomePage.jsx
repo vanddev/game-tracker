@@ -8,9 +8,26 @@ import { mdiControllerClassic } from '@mdi/js';
 import { mdiClock } from '@mdi/js';
 import { mdiHeart } from '@mdi/js';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import { useResponsiveContext } from '../../context/ResponsiveContext';
 
 
 const HomePage = () => {
+
+    const { isTablet, isMobile } = useResponsiveContext()
+
+    const recentlyAddedData = [
+        { name: "God of War", image: "./similar_games/godofwar.png  ", genre: "Adventure" },
+        { name: "Remnant: From the Ashes", image: "./similar_games/remnant.jpg", genre: "Action" },
+        { name: "Dragon: Marked for Death", image: "./similar_games/dragonmarketfordeath.png", genre: "Role-playing (RPG)" },
+        { name: "Borderlands 3", image: "./similar_games/borderlands3.png", genre: "Shooter" },
+        { name: "Life is Feudal: Your Own", image: "./similar_games/lifeisfeudal.jpg", genre: "Role-playing (RPG)" },
+        { name: "Pokemon Shield", image: "./similar_games/pokemonshield.png", genre: "Role-playing (RPG)" }
+    ]
+
+    if (isTablet || isMobile) {
+        recentlyAddedData.splice(4, 2); // Remove last two items for tablet view
+    }
+
     return (
         <>
             <SearchBar></SearchBar>
@@ -19,16 +36,13 @@ const HomePage = () => {
                 <StatsCard title="Total Games" stats="19" description="Games in your collection" iconPath={mdiControllerClassic}></StatsCard>
                 <StatsCard title="Finished Games" stats="6" iconPath={mdiCheckBold}></StatsCard>
                 <StatsCard title="Want to Play" stats="5" iconPath={mdiHeart}></StatsCard>
-                <StatsCard title="Total Play Time" stats="298 hrs" description="Hours spent gaming"  iconPath={mdiClock}></StatsCard>    
+                <StatsCard title="Estimated Play Time" stats="298 hrs" description="Hours spent gaming"  iconPath={mdiClock}></StatsCard>    
             </div>
             <Section title="Recently Added" remove_background>
                 <div className='cards'>
-                    <GameCard name="God of War" image="./similar_games/godofwar.png" genre="Adventure"></GameCard>
-                    <GameCard name="Remnant: From the Ashes" image="./similar_games/remnant.jpg" genre="Action"></GameCard>
-                    <GameCard name="Dragon: Marked for Death" image="./similar_games/dragonmarketfordeath.png" genre="Role-playing (RPG)"></GameCard>
-                    <GameCard name="Borderlands 3" image="./similar_games/borderlands3.png" genre="Shooter"></GameCard>
-                    <GameCard name="Life is Feudal: Your Own" image="./similar_games/lifeisfeudal.jpg" genre="Role-playing (RPG)"></GameCard>
-                    <GameCard name="Pokemon Shield" image="./similar_games/pokemonshield.png" genre="Role-playing (RPG)"></GameCard>
+                    {recentlyAddedData.map((game, index) => (
+                        <GameCard key={index} name={game.name} image={game.image} genre={game.genre}></GameCard>
+                    ))}
                 </div>
             </Section>
             <Section title="Gaming Summary">
