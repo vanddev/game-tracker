@@ -1,8 +1,8 @@
 import "./GameCard.css"
 
-const GameCard = ({name, image}) => {
+const GameCard = ({name, image, genre}) => {
   return (
-    <div className="card">
+    <div className="card dark-border">
         <div className="card-image">
             <figure className="image is-3by4">
             <img
@@ -13,7 +13,8 @@ const GameCard = ({name, image}) => {
         </div>
         <div className="card-content">
             <div className="content">
-                {name}
+                <span>{name}</span>
+                <span>{genre}</span>
             </div>
         </div>
     </div>

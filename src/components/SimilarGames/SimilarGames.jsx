@@ -2,6 +2,7 @@ import GameCard from '../GameCard/GameCard'
 import Carousel from 'react-multi-carousel'
 import "react-multi-carousel/lib/styles.css"
 import "./SimilarGames.css"
+import Section from '../ui/Section/Section'
 
 const SimilarGames = () => {
     const responsive = {
@@ -32,8 +33,7 @@ const SimilarGames = () => {
         }
     };
     return (
-        <section className="similar_games">
-            <h6 style={{paddingLeft: "20px"}}>Similar Games</h6>
+        <Section title="Similar Games" remove_background>
             <Carousel 
                 responsive={responsive}
                 showDots={false}
@@ -59,7 +59,7 @@ const SimilarGames = () => {
                 <GameCard name="GreedFall" image="./similar_games/greedfall.png"></GameCard>
                 <GameCard name="Hytale" image="./similar_games/hytale.png"></GameCard>
             </Carousel>
-        </section>
+        </Section>
     )
 }
 

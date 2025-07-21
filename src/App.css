@@ -2,6 +2,10 @@
 
 :root {
   --bg-color: hsl(220, 12%, 8%);
+  --dark-light-bg-color: #1a1a1c;
+  --mobile-breakpoint: 767px;
+  --main-container-max-width: 1400px;
+  --smooth-white-font-color:  #bfbfbf;
 }
 
 
@@ -13,7 +17,7 @@ body {
 
 main {
   margin: 0 auto;
-  max-width: 1400px;
+  max-width: var(--main-container-max-width);
   /* max-width: 50em; */
   /* max-width: 100%; */
   min-height: 100vh;
@@ -23,6 +27,12 @@ main {
 .wrapper {
   background-color: #181B20;
   padding: 20px;
+}
+
+.dark-border {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(53, 58, 70);
 }
 
 .flex-content {

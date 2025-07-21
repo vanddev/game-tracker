@@ -1,3 +1,4 @@
+import Section from '../ui/Section/Section'
 import './GameDetails.css'
 
 const GameDetails = () => {
@@ -60,8 +61,7 @@ const GameDetails = () => {
         <p>Many years have passed since Kratos, Spartan warrior and former Greek God of War, took his vengeance against the Greek Gods, and he now lives with his young son Atreus in ancient Norway in the realm of Midgard. The game begins after the death of the Jötunn warrior Faye, Kratos' second wife and Atreus' mother, whose last request was for her ashes to be spread at the highest speak of the nine realms. Kratos and Atreus prepare a funeral pyre for her, mourn her death and soon go on a hunt as per Kratos' desire. However much to Kratos' disappointment, Atreus proves his incompetence and lack of focus, making Kratos reconsider taking Atreus in his journey. Kratos is soon attacked by a mysterious stranger with godlike powers, and who cannot feel anything physically. After seemingly killing him, Kratos reluctantly takes Atreus with him and begins their journey.</p>
       </div>
       <div className='more-info'>
-        <div className="wrapper">
-          <span className='el-title'>Player Ratings</span>
+        <Section title="Player Ratings">
           <div className="ratings">
             <div className='rating'>
               <span>Metacritic</span>
@@ -81,10 +81,9 @@ const GameDetails = () => {
                 <span>96</span>
               </div>
             </div>
-          </div>   
-        </div>
-        <div className="wrapper">
-          <span className='el-title'>Age Ratings</span>
+          </div>
+        </Section>
+        <Section title="Age Ratings">
           <div className="ratings">
             <div className='rating'>
               <span>US</span>
@@ -99,14 +98,13 @@ const GameDetails = () => {
               <img src='https://www.igdb.com/icons/rating_icons/class_ind/class_ind_18.png'></img>
             </div>
           </div>
-        </div>
+        </Section>
       </div>
-      <div className="wrapper">
-        <span className='el-title'>Keywords</span>
+      <Section title="Keywords">
         {keywords && keywords.map((keyword) => (
           <span className="keyword" key={keyword}>{keyword}</span>
         ))}
-      </div>
+      </Section>
     </div>
     
   )
