@@ -5,6 +5,7 @@
 }
 
 .stats {
+    margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-gap: 20px;
@@ -74,4 +75,49 @@
 
 .wanted {
     color: rgb(128, 217, 255) !important;
+}
+
+@media screen and (max-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .stats .stats-item {
+        padding: 14px;
+    }
+    
+}
+
+@media screen and (max-width: calc(768px + 1px)) {
+    .status {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+}
+
+@media screen and (max-width: calc(425px + 1px)) {
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    .summary .topic {
+        order: 1;
+    }
+
+    .summary .topic:last-child {
+        order: 0;
+    }
+    
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stats {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
 }

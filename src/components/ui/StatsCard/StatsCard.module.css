@@ -35,3 +35,16 @@
 .icon {
     color: var(--smooth-white-font-color);
 }
+
+@media screen and (max-width: 1024px) {
+    .card {
+        padding: 14px;
+    }   
+}
+
+
+@media screen and (max-width: 768px) {
+    .stats {
+        font-size: 24px;
+    }   
+}
