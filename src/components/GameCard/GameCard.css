@@ -31,3 +31,14 @@
     font-size: 12px;
     color: #8c8c8c;
 }
+
+.status-icons {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    color: white;
+    background-color: black;
+    border-radius: 20px;
+    padding: 4px;
+}

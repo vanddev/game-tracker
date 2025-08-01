@@ -1,32 +1,18 @@
 import './GameHeroActions.css'
 import Icon from '@mdi/react';
-import { mdiChevronDown } from '@mdi/js';
 import { mdiStar } from '@mdi/js';
-import { mdiCheckCircleOutline } from '@mdi/js';
-import { mdiThumbDownOutline } from '@mdi/js';
-import { mdiHeart } from '@mdi/js';
 import { useState } from 'react';
+import { statusList } from '../../models/models';
 
 const GameHeroActions = ( { bgColor, isFloating } ) => {
   const defaultFloatingButtonIcon = mdiStar
-  const [isDropdownActive, setDropdownActive] = useState(false)
   const [isFloatingButtonActive, setFloatingButtonActive] = useState(false)
   const [floatingButtonIcon, setFloatingButtonIcon] = useState(defaultFloatingButtonIcon)
   const [currentStatus, setCurrentStatus] = useState(null)
 
-  const changeDropdownStatus = () => {
-    setDropdownActive(!isDropdownActive)
-  }
-
   const handleFloatingButtonClick = () => {
     setFloatingButtonActive(!isFloatingButtonActive);
   }
-
-  const statusList = [
-    { icon: mdiCheckCircleOutline, label: 'Finished', class: 'is-success' },
-    { icon: mdiHeart, label: 'Want Play', class: 'is-warning' },
-    { icon: mdiThumbDownOutline, label: 'Dropped', class: 'is-danger' },
-  ];
 
   const handleStatusChange = (newStatus) => {
     if (newStatus.label === currentStatus?.label) {
@@ -38,7 +24,6 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
     }
     
     setFloatingButtonActive(false);
-    setDropdownActive(false);
   }
 
   return (

@@ -5,6 +5,7 @@ import  'bulma/css/bulma.min.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import GamePage from './pages/GamePage/GamePage'
 import HomePage from './pages/HomePage/HomePage'
+import ChartPage from './pages/ChartPage/ChartPage'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path='/' element={ <HomePage /> }/>
             <Route path='/game' element={ <GamePage /> }></Route>
+            <Route path='/chart' element={ <ChartPage /> }></Route>
           </Routes>
         </BrowserRouter>
     </main>
