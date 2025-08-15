@@ -1,7 +1,7 @@
 import { Chart, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from "chart.js";
 import { Radar } from "react-chartjs-2";
 
-const RadarChart = ({ name, labels, data }) => {
+const RadarChart = ({ name, dataset }) => {
     Chart.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
     const generateColors = (num) => {
@@ -12,18 +12,27 @@ const RadarChart = ({ name, labels, data }) => {
         return colors;
     };
 
+
+    const sortedDataset = dataset.sort((a, b) => a.label.localeCompare(b.label));
+    const labels = sortedDataset.map(item => item.label);
+    const data = sortedDataset.map(item => item.value);
+
+    const pointBgColors = generateColors(labels.length);
+    const pointBorderColors = pointBgColors.map(color => color.replace('60%', '40%'));
+
     const chartData = {
         labels,
         datasets: [
             {
                 label: name,
                 data,
-                backgroundColor: "rgba(10, 123, 204, 0.2)",
+                backgroundColor: "rgba(10, 123, 204, 0.9)",
                 borderColor: "rgba(54, 162, 235, 1)",
-                pointBackgroundColor: generateColors(labels.length),
-                pointBorderColor: "#ffffff",
-                pointHoverBackgroundColor: "#ffffffff",
-                pointHoverBorderColor: generateColors(labels.length),
+                pointBackgroundColor: pointBgColors,
+                pointBorderColor: "#ffffffff",
+                pointBorderWidth: 1,
+                pointHoverBackgroundColor: pointBorderColors,
+                pointHoverBorderColor: pointBgColors,
                 borderWidth: 2,
                 fill: true,
             },

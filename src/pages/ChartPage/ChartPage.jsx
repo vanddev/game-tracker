@@ -1,11 +1,12 @@
+import './ChartPage.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import PieChart from "../../components/ui/PieChart/PieChart";
 import Section from "../../components/ui/Section/Section";
 import BarChart from "../../components/ui/BarChart/BarChart";
-import HorizontalBarChart from "../../components/ui/HorizontalBarChart/HorizontalBarChart";
 import StackedBarChart from "../../components/ui/StackedBarChart/StackedBarChart";
 import RadarChart from "../../components/ui/RadarChart/RadarChart";
 import AreaChart from "../../components/ui/AreaChart/AreaChart";
+import Bar100Chart from '../../components/ui/Bar100Chart/Bar100Chart';
 
 
 const ChartPage = () => {
@@ -63,28 +64,32 @@ const ChartPage = () => {
 
     return (
         <div>
-            <Section title='Games Played by Status'>
-                <div style={{ width: '100%', height: '400px' }}>
-                    <PieChart name='Music Genre Popularity' dataset={pieCharData}/>
-                </div>
-            </Section>
-            <Section title='Games Finished by Genre'>
-                <div style={{ width: '100%', height: '400px' }}>
-                    <BarChart name="Games Played by Genre" dataset={horizontalBarData} orientation="horizontal" maxDataPointCount="3" />
-                </div>
-            </Section>
+            <div className="split-section">
+                <Section title='Games Played by Status'>
+                    <div className='chart-container'>
+                        <PieChart name='Music Genre Popularity' dataset={pieCharData}/>
+                    </div>
+                </Section>
+                <Section title="Genre Breakdown">
+                    <div className='chart-container'>
+                        <RadarChart
+                            name="Genre Attributes" dataset={horizontalBarData}/>
+                    </div>
+                </Section>
+            </div>
+            
             <Section title='Game Finished by Platform'>
-                <div style={{ width: '100%', height: '400px' }}>
+                <div className='chart-container'>
                     <BarChart name="Game Played by Platform" dataset={barData} maxDataPointCount="10" />
                 </div>
             </Section>
             <Section title='Game Finished by Release Year'>
-                <div style={{ width: '100%', height: '400px' }}>
+                <div className='chart-container'>
                     <AreaChart name="Game Finished by Release Year"  data={[120, 150, 170, 140, 180, 200]} labels={["2025", "2024", "2023", "2022", "2021", "2020"]} />
                 </div>
             </Section>
             <Section title="Quarterly Genre Sales">
-                <div style={{ width: '100%', height: '400px' }}>
+                <div className='chart-container'>
                     <StackedBarChart
                         name="Quarterly Genre Sales"
                         labels={stackedLabels}
@@ -92,13 +97,9 @@ const ChartPage = () => {
                         />
                 </div>
             </Section>
-            <Section title="Genre Attributes">
-                <div style={{ width: '100%', height: '400px' }}>
-                    <RadarChart
-                        name="Genre Attributes"
-                        labels={["Energy", "Danceability", "Acousticness", "Valence", "Popularity"]}
-                        data={[80, 60, 40, 70, 90]}
-                        />
+            <Section title="Game Popularity by Genre">
+                <div className='chart-container'>
+                    <Bar100Chart />
                 </div>
             </Section>
         </div>
