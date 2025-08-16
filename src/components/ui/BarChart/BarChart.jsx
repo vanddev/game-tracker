@@ -43,14 +43,24 @@ const BarChart = ({ name, dataset, orientation, maxDataPointCount }) => {
             legend: {
                 position: 'bottom',
                 labels: {
-                    color: '#ffffff', // Legend font color
+                    color: 'rgb(191, 191, 191)', // Legend font color
                     font: {
                         weight: 'bold',
-                        size: 14
+                        size: 12
                     }
                 }
             }
         },
+        scales: {
+            x: {
+                grid: { color: '#ffffff5e' },
+                ticks: { color: '#ffffff5e' }
+            },
+            y: {
+                grid: { color: '#ffffff5e' },
+                ticks: { color: '#ffffff5e' }
+            }
+        }
     };
 
     return (

@@ -26,10 +26,10 @@ const PieChart = ( { name, dataset }) => {
             legend: {
                 position: 'bottom',
                 labels: {
-                    color: '#ffffff',
+                    color: 'rgb(191, 191, 191)',
                     font: {
                         weight: 'bold',
-                        size: 14
+                        size: 12
                     }
                 }
             }

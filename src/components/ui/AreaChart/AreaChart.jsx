@@ -26,11 +26,12 @@ const AreaChart = ({ name, labels, data }) => {
         plugins: {
             legend: {
                 position: 'bottom',
+                display: false,
                 labels: {
-                    color: '#ffffff',
+                    color: 'rgb(191, 191, 191)',
                     font: {
                         weight: 'bold',
-                        size: 14
+                        size: 12
                     }
                 }
             }
@@ -38,11 +39,11 @@ const AreaChart = ({ name, labels, data }) => {
         scales: {
             x: {
                 grid: { color: '#ffffff5e' },
-                ticks: { color: '#ffffff' }
+                ticks: { color: '#ffffff5e' }
             },
             y: {
                 grid: { color: '#ffffff5e' },
-                ticks: { color: '#ffffff' }
+                ticks: { color: '#ffffff5e' }
             }
         }
     };

@@ -34,17 +34,25 @@ const StackedBarChart = ({ datasets, labels }) => {
             legend: {
                 position: 'bottom',
                 labels: {
-                    color: '#ffffff', // Legend font color
+                    color: 'rgb(191, 191, 191)', // Legend font color
                     font: {
                         weight: 'bold',
-                        size: 14
+                        size: 12
                     }
                 }
             }
         },
         scales: {
-            x: { stacked: true },
-            y: { stacked: true },
+            x: {
+                grid: { color: '#ffffff5e' },
+                ticks: { color: '#ffffff5e' },
+                stacked: true 
+            },
+            y: {
+                grid: { color: '#ffffff5e' },
+                ticks: { color: '#ffffff5e' },
+                stacked: true 
+            },
         },
     };
 

@@ -50,7 +50,7 @@ const RadarChart = ({ name, dataset }) => {
                     color: '#ffffff', // Legend font color
                     font: {
                         weight: 'bold',
-                        size: 14
+                        size: 12
                     }
                 }
             }
@@ -66,10 +66,10 @@ const RadarChart = ({ name, dataset }) => {
                 },
                 pointLabels: {
                     display: true,
-                    color: '#ffffff',
+                    color: 'rgb(191, 191, 191)',
                     font: {
                         weight: 'bold',
-                        size: 14
+                        size: 12
                     }
                 },
                 ticks: { display: false },

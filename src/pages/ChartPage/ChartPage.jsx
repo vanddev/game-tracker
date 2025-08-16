@@ -66,12 +66,12 @@ const ChartPage = () => {
         <div>
             <div className="split-section">
                 <Section title='Games Played by Status'>
-                    <div className='chart-container'>
+                    <div className='chart-container small-chart'>
                         <PieChart name='Music Genre Popularity' dataset={pieCharData}/>
                     </div>
                 </Section>
                 <Section title="Genre Breakdown">
-                    <div className='chart-container'>
+                    <div className='chart-container small-chart'>
                         <RadarChart
                             name="Genre Attributes" dataset={horizontalBarData}/>
                     </div>
