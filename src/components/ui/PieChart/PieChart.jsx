@@ -1,6 +1,5 @@
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
-import Section from "../Section/Section";
 
 const PieChart = ( { name, dataset }) => {
 
