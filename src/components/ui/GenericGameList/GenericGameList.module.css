@@ -1,0 +1,9 @@
+.game_list {
+    display: grid;
+    gap: 20px;
+    padding: 14px 0;
+}
+
+.game_list_item {
+    height: 140px;
+}
