@@ -1,7 +1,7 @@
 import styles from './SearchBar.module.css';
 import Icon from "@mdi/react";
 import { mdiMagnify } from '@mdi/js';
-import LinkItemList from '../ui/LinkItemList/LinkItemList';
+import LinkedItemList from '../ui/LinkedItemList/LinkedItemList';
 import Divider from '../ui/Divider/Divider';
 import { useState } from 'react';
 
@@ -9,10 +9,10 @@ const SearchBar = ({ }) => {
     const [isSearching, setSearching] = useState(false)
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([
-        { title: 'God of War', image: "./similar_games/godofwar.png", url: '/games/godofwar' },
-        { title: 'God of War', image: "./similar_games/godofwar.png", url: '/games/godofwar' },
-        { title: 'God of War', image: "./similar_games/godofwar.png", url: '/games/godofwar' },
-        { title: 'God of War', image: "./similar_games/godofwar.png", url: '/games/godofwar' },
+        { title: 'God of War', image: "/similar_games/godofwar.png", url: '/games/godofwar' },
+        { title: 'God of War', image: "/similar_games/godofwar.png", url: '/games/godofwar' },
+        { title: 'God of War', image: "/similar_games/godofwar.png", url: '/games/godofwar' },
+        { title: 'God of War', image: "/similar_games/godofwar.png", url: '/games/godofwar' },
     ]);
 
     const handleOnFocus = () => {
@@ -36,7 +36,7 @@ const SearchBar = ({ }) => {
                 <ul className={`dark-border` + (isSearching ? '' : ' is-hidden')}>
                     {searchResults.length > 0 ? searchResults.map((game, index) => (
                         <li key={index}>
-                            <LinkItemList image={game.image} title={game.title} url={game.url} />
+                            <LinkedItemList image={game.image} title={game.title} url={game.url} />
                         </li>
                     )) :
                     // If no results, show a message or placeholder

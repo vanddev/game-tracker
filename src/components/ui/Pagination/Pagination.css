@@ -1,0 +1,3 @@
+.pagination:last-child {
+    margin-top: var(--bulma-block-spacing);
+}

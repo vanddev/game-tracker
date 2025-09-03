@@ -7,7 +7,6 @@ import { mdiCheckBold } from '@mdi/js';
 import { mdiControllerClassic } from '@mdi/js';
 import { mdiClock } from '@mdi/js';
 import { mdiHeart } from '@mdi/js';
-import SearchBar from '../../components/SearchBar/SearchBar';
 import { useResponsiveContext } from '../../context/ResponsiveContext';
 
 
@@ -16,12 +15,12 @@ const HomePage = () => {
     const { isTablet, isMobile } = useResponsiveContext()
 
     const recentlyAddedData = [
-        { name: "God of War", image: "./similar_games/godofwar.png  ", genre: "Adventure" },
-        { name: "Remnant: From the Ashes", image: "./similar_games/remnant.jpg", genre: "Action" },
-        { name: "Dragon: Marked for Death", image: "./similar_games/dragonmarketfordeath.png", genre: "Role-playing (RPG)" },
-        { name: "Borderlands 3", image: "./similar_games/borderlands3.png", genre: "Shooter" },
-        { name: "Life is Feudal: Your Own", image: "./similar_games/lifeisfeudal.jpg", genre: "Role-playing (RPG)" },
-        { name: "Pokemon Shield", image: "./similar_games/pokemonshield.png", genre: "Role-playing (RPG)" }
+        { name: "God of War", image: "/similar_games/godofwar.png", genre: "Adventure", statusId: 'finished' },
+        { name: "Remnant: From the Ashes", image: "/similar_games/remnant.jpg", genre: "Action", statusId: 'finished' },
+        { name: "Dragon: Marked for Death", image: "/similar_games/dragonmarketfordeath.png", genre: "Role-playing (RPG)", statusId: 'dropped' },
+        { name: "Borderlands 3", image: "/similar_games/borderlands3.png", genre: "Shooter", statusId: 'wishlist' },
+        { name: "Life is Feudal: Your Own", image: "/similar_games/lifeisfeudal.jpg", genre: "Role-playing (RPG)", statusId: 'finished' },
+        { name: "Pokemon Shield", image: "/similar_games/pokemonshield.png", genre: "Role-playing (RPG)", statusId: 'finished' },
     ]
 
     if (isTablet || isMobile) {
@@ -29,9 +28,7 @@ const HomePage = () => {
     }
 
     return (
-        <>
-            <SearchBar></SearchBar>
-            
+        <>           
             <div className='stats'>
                 <StatsCard title="Total Games" stats="19" description="Games in your collection" iconPath={mdiControllerClassic}></StatsCard>
                 <StatsCard title="Finished Games" stats="6" iconPath={mdiCheckBold}></StatsCard>
@@ -41,7 +38,7 @@ const HomePage = () => {
             <Section title="Recently Added" remove_background>
                 <div className='cards'>
                     {recentlyAddedData.map((game, index) => (
-                        <GameCard key={index} name={game.name} image={game.image} genre={game.genre}></GameCard>
+                        <GameCard key={index} name={game.name} image={game.image} genre={game.genre} statusId={game.statusId}></GameCard>
                     ))}
                 </div>
             </Section>
