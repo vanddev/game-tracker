@@ -1,0 +1,48 @@
+.sideMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 130px;
+    height: 110vh;
+    background: var(--dark-light-bg-color);
+    color: #fff;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.08);
+    padding: 32px 16px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+}
+
+.sideMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sideMenu li {
+    /* margin-bottom: 18px; */
+}
+
+.sideMenu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.sideMenu a:hover {
+    color: #ffd700;
+}
+
+.sideMenu a span {
+    font-size: 12px;
+}
