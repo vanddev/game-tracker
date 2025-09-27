@@ -1,31 +1,35 @@
 .sideMenu {
     position: fixed;
-    top: 0;
+    top: var(--top-bar-height);
     left: 0;
-    width: 130px;
+    width: var(--side-menu-width);
     height: 110vh;
     background: var(--dark-light-bg-color);
     color: #fff;
-    box-shadow: -2px 0 8px rgba(0,0,0,0.08);
-    padding: 32px 16px;
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    padding-top: 100px;
+    padding-inline: 4px;
+    padding-top: 24px;
+    z-index: var(--z-index-fixed-elements);
 }
 
 .sideMenu ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-.sideMenu li {
-    /* margin-bottom: 18px; */
+.sideMenu li:hover, .sideMenu li.active {
+    border-radius: 6px;
+    background-color: #404040;
 }
 
 .sideMenu a {
-    color: #fff;
+    color: #bfbfbf;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
@@ -40,7 +44,7 @@
 }
 
 .sideMenu a:hover {
-    color: #ffd700;
+    color: white;
 }
 
 .sideMenu a span {

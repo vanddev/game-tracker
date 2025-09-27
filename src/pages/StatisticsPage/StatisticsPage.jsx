@@ -1,4 +1,4 @@
-import './ChartPage.css';
+import './StatisticsPage.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import PieChart from "../../components/ui/PieChart/PieChart";
 import Section from "../../components/ui/Section/Section";
@@ -9,7 +9,7 @@ import AreaChart from "../../components/ui/AreaChart/AreaChart";
 import Bar100Chart from '../../components/ui/Bar100Chart/Bar100Chart';
 
 
-const ChartPage = () => {
+const StatisticsPage = () => {
     ChartJS.register(ArcElement, Tooltip, Legend);
 
     const pieCharData = [
@@ -106,4 +106,4 @@ const ChartPage = () => {
     );
 }
 
-export default ChartPage;
+export default StatisticsPage;

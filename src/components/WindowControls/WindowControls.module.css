@@ -1,0 +1,24 @@
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.controls button {
+    width: 2.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls button:hover {
+    background-color: #404040;
+    color: white;
+}
+
+.controls .closeButton:hover {
+    background-color: #e81123;
+}

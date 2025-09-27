@@ -6,6 +6,9 @@
   --mobile-breakpoint: 767px;
   --main-container-max-width: 1400px;
   --smooth-white-font-color:  #bfbfbf;
+  --side-menu-width: 80px;
+  --top-bar-height: 60px;
+  --z-index-fixed-elements: 3000;
 }
 
 
@@ -19,6 +22,9 @@ body {
   margin: 0 auto;
   max-width: var(--main-container-max-width);
   padding-inline: 20px;
+  padding-inline-start: calc(var(--side-menu-width) + 20px);
+  padding-top: var(--top-bar-height);
+  padding-bottom: var(--top-bar-height);
 }
 
 main {
