@@ -1,0 +1,21 @@
+.topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--top-bar-height);
+    background-color: var(--dark-light-bg-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-index-fixed-elements);
+}
+
+.appTitle {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #d4d4d4;
+    user-select: none;
+}

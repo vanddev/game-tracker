@@ -1,6 +1,7 @@
 import { mdiCheckBold } from '@mdi/js';
 import { mdiHeart } from '@mdi/js';
 import { mdiCancel } from '@mdi/js';
+import { House, Library, LayoutGrid, Sparkles, ChartNoAxesColumn } from 'lucide-react';
 
 const statusList = [
     { icon: mdiCheckBold, label: 'Finished', id: 'finished' },
@@ -8,4 +9,12 @@ const statusList = [
     { icon: mdiCancel, label: 'Dropped', id: 'dropped' },
 ]
 
-export { statusList };
+const sideMenuList = [
+    { link: "/", icon: House, label: 'Home'},
+    { link: "/", icon: Library, label: 'Library'},
+    // { link: "/", icon: LayoutGrid, label: 'Explorer'},
+    // { link: "/", icon: Sparkles, label: 'Suggested'},
+    { link: "/statistics", icon: ChartNoAxesColumn, label: 'Statistics'},
+]
+
+export { statusList, sideMenuList };
