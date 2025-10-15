@@ -1,6 +1,6 @@
 .card {
     box-shadow: none;
-    margin-bottom: auto;
+    margin-bottom: auto !important;
     /* height: 100%;
     display: flex;
     flex-direction: column; */

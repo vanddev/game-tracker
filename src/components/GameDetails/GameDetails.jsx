@@ -6,7 +6,7 @@ const GameDetails = () => {
   
   return (
     <div className='game-details'>
-      <div className='wrapper'>
+      <div className='wrapper' style={{marginBottom: 0}}>
         <p>God of War is the sequel to God of War III as well as a continuation of the canon God of War chronology. Unlike previous installments, this game focuses on Norse mythology and follows an older and more seasoned Kratos and his son Atreus in the years since the third game. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same.</p>
         <hr/>
         <div className="spec">

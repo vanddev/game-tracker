@@ -8,10 +8,11 @@ import { mdiControllerClassic } from '@mdi/js';
 import { mdiClock } from '@mdi/js';
 import { mdiHeart } from '@mdi/js';
 import { useResponsiveContext } from '../../context/ResponsiveContext';
+import ScrollToTop from '../../components/ScrollToTop';
 
 
 const HomePage = () => {
-
+    ScrollToTop()
     const { isTablet, isMobile } = useResponsiveContext()
 
     const recentlyAddedData = [
@@ -35,7 +36,7 @@ const HomePage = () => {
                 <StatsCard title="Want to Play" stats="5" iconPath={mdiHeart}></StatsCard>
                 <StatsCard title="Estimated Play Time" stats="298 hrs" description="Hours spent gaming"  iconPath={mdiClock}></StatsCard>    
             </div>
-            <Section title="Recently Added" remove_background>
+            <Section title="Recently Added" removeBackground>
                 <div className='cards'>
                     {recentlyAddedData.map((game, index) => (
                         <GameCard key={index} name={game.name} image={game.image} genre={game.genre} statusId={game.statusId}></GameCard>

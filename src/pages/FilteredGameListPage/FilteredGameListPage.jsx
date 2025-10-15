@@ -1,19 +1,25 @@
 import GenericGameList from '../../components/ui/GenericGameList/GenericGameList';
-import './GenreGamesPage.css'
 import { useParams } from "react-router-dom"
+import ScrollToTop from '../../components/ScrollToTop';
+import PageTitle from '../../components/PageTitle/PageTitle';
+import useURIDecode from '../../hooks/useURIDecode';
+import { use } from 'react';
 
-const GenreGamesPage = () => {
-
-  const { genreName } = useParams();
+const FilteredGameListPage = () => {
+  ScrollToTop();
+  const { category, filter } = useParams();
 
   const capitalize = (s) => {
-    if (typeof s !== 'string') return ''
-    return s.charAt(0).toUpperCase() + s.slice(1)
-  }
+    if (typeof s !== 'string') return '';
+    return useURIDecode(s)
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+}
 
   return (
     <article>
-      <h1>{ `${capitalize(genreName)} Games` }</h1>
+      <PageTitle title={ `${capitalize(filter)} Games` } />
       <GenericGameList games={[
           { name: "God of War", image: "/similar_games/godofwar.png", platforms: ['PlayStation', 'PC'] },
           { name: "Remnant: From the Ashes", image: "/similar_games/remnant.jpg", platforms: ['PC', 'Xbox One'] },
@@ -29,4 +35,4 @@ const GenreGamesPage = () => {
     
   )
 }
-export default GenreGamesPage
+export default FilteredGameListPage

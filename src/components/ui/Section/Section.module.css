@@ -1,13 +1,31 @@
 .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--section-title-margin-bottom);
+    height: var(--section-title-height);
+}
+
+.title h3 {
+    font-size: 18px;
     color: var(--bulma-strong-color);
     font-weight: var(--bulma-strong-weight);
-    margin-bottom: 20px;
-    display: block;
-    font-size: 18px;
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.title .arrow {
+    transition: transform 200ms ease-in-out;
+    color: var(--smooth-white-font-color);
+}
+
+.title a:hover .arrow {
+    transform: translateX(0.25rem);
 }
 
 .wrapper {
-    margin: 1.5rem 0 ;
+    margin-top: 1.5rem;
     /* box-shadow: inset 0 0 0.8px 1px hsla(0, 0%, 48%, 0.1); */
     padding: 20px;
     /* 2. shadow ring 👇 */
@@ -15,6 +33,10 @@
     /* 0 0.3px 0.4px hsla(230, 13%, 9%, 0.02),
     0 0.9px 1.5px hsla(230, 13%, 9%, 0.045),
     0 3.5px 6px hsla(230, 13%, 9%, 0.09); */
+}
+
+.wrapper:not(:last-child) {
+    padding-bottom: 0;
 }
 
 .dark_background {

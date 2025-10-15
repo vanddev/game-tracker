@@ -7,9 +7,12 @@ import StackedBarChart from "../../components/ui/StackedBarChart/StackedBarChart
 import RadarChart from "../../components/ui/RadarChart/RadarChart";
 import AreaChart from "../../components/ui/AreaChart/AreaChart";
 import Bar100Chart from '../../components/ui/Bar100Chart/Bar100Chart';
+import ScrollToTop from '../../components/ScrollToTop';
+import PageTitle from '../../components/PageTitle/PageTitle';
 
 
 const StatisticsPage = () => {
+    ScrollToTop();
     ChartJS.register(ArcElement, Tooltip, Legend);
 
     const pieCharData = [
@@ -64,6 +67,7 @@ const StatisticsPage = () => {
 
     return (
         <div>
+            <PageTitle title="My Statistics" />
             <div className="split-section">
                 <Section title='Games Played by Status'>
                     <div className='chart-container small-chart'>

@@ -9,8 +9,22 @@
   --side-menu-width: 80px;
   --top-bar-height: 60px;
   --z-index-fixed-elements: 3000;
+  --section-title-height: 30px;
+  --section-title-margin-bottom: 20px;
 }
 
+h1.page-title {
+    font-family: ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 24px;
+    color: var(--bulma-strong-color);
+    font-weight: 700;
+    padding-top: 30px;
+    margin-bottom: 0px;
+    line-height: 10px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
 
 body {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;

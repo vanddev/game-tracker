@@ -2,14 +2,19 @@ import "./GamePage.css"
 import GameHero from "../../components/GameHero/GameHero"
 import GameHeroActions from "../../components/GameHeroActions/GameHeroActions"
 import GameDetails from "../../components/GameDetails/GameDetails"
-import SimilarGames from "../../components/SimilarGames/SimilarGames"
-import { useCallback, useState } from "react"
+import ResponsiveCaroulsel from "../../components/ResponsiveCarousel/ResponsiveCarousel"
+import Section from "../../components/ui/Section/Section"
+import PageTitle from "../../components/PageTitle/PageTitle"
+import { useState } from "react"
 import Color from "color"
 import { useResponsiveContext } from '../../context/ResponsiveContext'
+import ScrollToTop from '../../components/ScrollToTop';
+import GameCard from "../../components/GameCard/GameCard"
 
 
 
 const GamePage = () => {
+  ScrollToTop();
   const hero = {url: "./library_hero_2x.jpg", name: "Assassin's Creed Valhalla"}
   const logo = {url: "./logo_2x.png"}
   const cover = {url: "./library_2x.jpg"}
@@ -88,9 +93,28 @@ const GamePage = () => {
     "all_styles": "84 Hours"
   }
 
+  const similarGames = [
+    <GameCard name="God of War" image="/similar_games/godofwar.png" key={0}></GameCard>,
+    <GameCard name="Remnant: From the Ashes" image="/similar_games/remnant.jpg" key={1}></GameCard>,
+    <GameCard name="Dragon: Marked for Death" image="/similar_games/dragonmarketfordeath.png" key={2}></GameCard>,
+    <GameCard name="Borderlands 3" image="/similar_games/borderlands3.png" key={3}></GameCard>,
+    <GameCard name="Life is Feudal: Your Own" image="/similar_games/lifeisfeudal.jpg" key={4}></GameCard>,
+    <GameCard name="Pokemon Shield" image="/similar_games/pokemonshield.png" key={5}></GameCard>,
+    <GameCard name="Warhammer: Chaosbane" image="/similar_games/warhammer-chaosbane.png" key={6}></GameCard>,
+    <GameCard name="Battle Brothers" image="/similar_games/battlebrothers.png" key={7}></GameCard>,
+    <GameCard name="Savage Lands" image="/similar_games/savagelands.png" key={8}></GameCard>,
+    <GameCard name="Torchlight III" image="/similar_games/torchilight3.jpg" key={9}></GameCard>,
+    <GameCard name="Assassins Creed Odyssey" image="/similar_games/assassinscreedodyssey.png" key={10}></GameCard>,
+    <GameCard name="Children of Morta" image="/similar_games/childrenofmorta.jpg" key={11}></GameCard>,
+    <GameCard name="Shadows: Awakening" image="/similar_games/shadowsawakening.png" key={12}></GameCard>,
+    <GameCard name="GreedFall" image="/similar_games/greedfall.png" key={13}></GameCard>,
+    <GameCard name="Hytale" image="/similar_games/hytale.png" key={14}></GameCard>,
+  ]
+
 
   return (
     <>
+      <PageTitle title={ hero.name } />
       <div className="overflow-container">
         <GameHero game_name={hero.name}
                   background_image={hero.url}
@@ -102,8 +126,11 @@ const GamePage = () => {
         <GameHeroActions bgColor={heroActionsBg} isFloating={isMobile}></GameHeroActions>
       </div>
       <GameDetails></GameDetails>
-      <SimilarGames></SimilarGames>
-      <div className="footer"></div>
+      <Section title="You may also like" removeBackground>
+        <ResponsiveCaroulsel>
+          { similarGames }
+        </ResponsiveCaroulsel>
+      </Section>
     </>
     
   )

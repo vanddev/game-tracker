@@ -6,6 +6,14 @@ import ChartPluginStacked100 from "chartjs-plugin-stacked100";
 const Bar100Chart = () => {
     Chart.register(BarElement, CategoryScale, LinearScale, ChartPluginStacked100, Tooltip, Legend);
 
+    const generateColors = (num) => {
+        const colors = [];
+        for (let i = 0; i < num; i++) {
+            colors.push(`hsl(${(i * 360) / num}, 80%, 60%)`);
+        }
+        return colors;
+    };
+
     const labels = ["Foo", "Bar"]
     const data = [
         { label: "bad", data: [5, 25], backgroundColor: "rgba(244, 143, 177, 0.6)" },
@@ -13,9 +21,16 @@ const Bar100Chart = () => {
         { label: "good", data: [10, 8], backgroundColor: "rgba(100, 181, 246, 0.6)" },
     ]
 
+    const coloredDatasets = data.map((d, idx) => ({
+        ...d,
+        backgroundColor: generateColors(data.length)[idx],
+        borderColor: generateColors(data.length)[idx].replace('60%', '40%'),
+        borderWidth: 1,
+    }));
+
     const chartData = {
         labels,
-        datasets: data,
+        datasets: coloredDatasets,
     };
 
     const chartOptions = {

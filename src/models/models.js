@@ -11,10 +11,18 @@ const statusList = [
 
 const sideMenuList = [
     { link: "/", icon: House, label: 'Home'},
-    { link: "/", icon: Library, label: 'Library'},
+    { link: "/library", icon: Library, label: 'Library'},
     // { link: "/", icon: LayoutGrid, label: 'Explorer'},
     // { link: "/", icon: Sparkles, label: 'Suggested'},
     { link: "/statistics", icon: ChartNoAxesColumn, label: 'Statistics'},
 ]
+
+const sideMenu = {
+    home: { link: "/", icon: House, label: 'Home'},
+    library: { link: "/library", icon: Library, label: 'Library'},
+    explorer: { link: "/explorer", icon: LayoutGrid, label: 'Explorer'},
+    // suggested: { link: "/", icon: Sparkles, label: 'Suggested'},
+    statistics: { link: "/statistics", icon: ChartNoAxesColumn, label: 'Statistics'},
+}
 
 export { statusList, sideMenuList };

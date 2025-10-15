@@ -3,6 +3,8 @@ import Icon from '@mdi/react';
 import { mdiStar } from '@mdi/js';
 import { useState } from 'react';
 import { statusList } from '../../models/models';
+import { Link } from 'react-router-dom';
+import useURIEncode from '../../hooks/useURIEncode';
 
 const GameHeroActions = ( { bgColor, isFloating } ) => {
   const defaultFloatingButtonIcon = mdiStar
@@ -26,21 +28,40 @@ const GameHeroActions = ( { bgColor, isFloating } ) => {
     setFloatingButtonActive(false);
   }
 
+  const genres = ['RPG', "Hack'n Slash", 'Adventure'];
+  const platforms = ['PC', 'PS5', 'PS4'];
+  const themes = ['Action', 'Fantasy', 'Historical'];
+
   return (
     
     <div className="hero-actions" style={bgColor ? {backgroundColor: bgColor}: {}}>
       <div>
         <p>
           <strong>Genres: </strong>
-          <a>RPG</a>, <a>Hack'n Slash</a>, <a>Adventure</a>
+          {genres.map((genre, index) => (
+            <span key={index}>
+              {index > 0 && ', '}
+              <Link to={`/games/genres/${useURIEncode(genre)}`}>{genre}</Link>
+            </span>
+          ))}
         </p>
         <p>
           <strong>Platforms: </strong>
-          <a>PC</a>, <a>PS5</a>, <a>PS4</a>
+          {platforms.map((platform, index) => (
+            <span key={index}>
+              {index > 0 && ', '}
+              <Link to={`/games/platforms/${useURIEncode(platform)}`}>{platform}</Link>
+            </span>
+          ))}
         </p>
         <p>
           <strong>Themes: </strong>
-          <a>Action</a>, <a>Fantasy</a>, <a>Historical</a>
+          {themes.map((theme, index) => (
+            <span key={index}>
+              {index > 0 && ', '}
+              <Link to={`/games/themes/${useURIEncode(theme)}`}>{theme}</Link>
+            </span>
+          ))}
         </p>
       </div>
       { isFloating ?

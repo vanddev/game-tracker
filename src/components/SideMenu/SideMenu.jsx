@@ -1,22 +1,37 @@
 import styles from './SideMenu.module.css';
-import { Link } from "react-router-dom"
-import { useState, useEffect, use } from 'react';
+import { Link, useLocation } from "react-router-dom"
+import { useEffect, useState } from 'react';
 import { sideMenuList } from '../../models/models';
 
-const SideMenu = () => {
+const SideMenu = ({ items }) => {
     const [activeMenu, setActiveMenu] = useState(0);
+    const location = useLocation();
     const strokeWidth = 2;
     const iconSize = 16;
 
     const handleMenuClick = (menuActivated) => {
         setActiveMenu(menuActivated);
     }
+
+    useEffect(() => {
+        const currentPath = location.pathname;
+        const foundIndex = items.findIndex(item => {
+            if (currentPath === '/' && item.link === '/') return true;
+            if (item.routes) {
+                return item.routes.some(route => currentPath.includes(route));
+            }
+            return currentPath.includes(item.link) && item.link !== '/'
+        });
+        if (foundIndex !== -1) {
+            setActiveMenu(foundIndex);
+        }
+    }, [location]);
     
     return (
         <aside className={styles.sideMenu}>
             <nav>
                 <ul>
-                    {sideMenuList.map((item, index) => (
+                    {items.map((item, index) => (
                         <li key={index} className={activeMenu === index ? styles.active : ''} onClick={() => handleMenuClick(index)}>
                             <Link to={item.link} className='menu_button'>
                                 <item.icon size={iconSize} strokeWidth={strokeWidth} />

@@ -20,7 +20,7 @@ const LinkedItemList = ({ title, image, url, platforms }) => {
                     <div className={styles.platforms}>
                         {platforms.map((platform, index) => (
                             <React.Fragment key={index}>
-                                <Link to={`platforms/${platform}`} className={styles.platform}>
+                                <Link to={`/games/platforms/${platform}`} className={styles.platform}>
                                     {platform}
                                 </Link>
                                 {index < platforms.length - 1 && <span>, </span>}
