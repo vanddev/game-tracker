@@ -1,6 +1,6 @@
 import "./GameCard.css"
 import Icon from "@mdi/react";
-import { statusList } from "../../models/models";
+import { statusList } from "../../contants/contants";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 

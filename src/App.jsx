@@ -9,6 +9,7 @@ import SideMenu from './components/SideMenu/SideMenu'
 import LibraryPage from './pages/LibraryPage/LibraryPage'
 import FilteredGameListPage from './pages/FilteredGameListPage/FilteredGameListPage'
 import { House, Library, LayoutGrid, Sparkles, ChartNoAxesColumn } from 'lucide-react';
+import ExplorerPage from './pages/ExplorerPage/ExplorerPage'
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path='/game' element={ <GamePage /> }></Route>
             <Route path='/library' element={ <LibraryPage /> }></Route>
             <Route path='/statistics' element={ <StatisticsPage /> }></Route>
+            <Route path='/explorer' element={ <ExplorerPage /> }></Route>
             <Route path='/' element={ <HomePage /> }/>
             <Route path='*' element={ <HomePage /> }/>
           </Routes>

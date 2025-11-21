@@ -1,24 +1,19 @@
 import { Chart, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from "chart.js";
 import { Radar } from "react-chartjs-2";
+import { chartLabelColor, chartGridColor } from "../../../contants/contants";
+import useGenerateChartColors from "../../../hooks/useGenerateChartColors";
+import useGenerateChartTooltip from "../../../hooks/useGenerateChartTooltip";
+
 
 const RadarChart = ({ name, dataset }) => {
     Chart.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
-    const generateColors = (num) => {
-        const colors = [];
-        for (let i = 0; i < num; i++) {
-            colors.push(`hsl(${(i * 360) / num}, 80%, 60%)`);
-        }
-        return colors;
-    };
-
-
     const sortedDataset = dataset.sort((a, b) => a.label.localeCompare(b.label));
     const labels = sortedDataset.map(item => item.label);
     const data = sortedDataset.map(item => item.value);
+    const totalDataValue = data.reduce((sum, val) => sum + val, 0);
 
-    const pointBgColors = generateColors(labels.length);
-    const pointBorderColors = pointBgColors.map(color => color.replace('60%', '40%'));
+    const [pointBgColors, pointBorderColors] = useGenerateChartColors(labels.length);
 
     const chartData = {
         labels,
@@ -47,13 +42,23 @@ const RadarChart = ({ name, dataset }) => {
                 display: false,
                 position: 'bottom',
                 labels: {
-                    color: '#ffffff', // Legend font color
+                    color: chartLabelColor, // Legend font color
                     font: {
                         weight: 'bold',
                         size: 12
                     }
                 }
-            }
+            },
+            tooltip: {
+                enabled: true,
+                mode: 'nearest',
+                intersect: false,
+                callbacks: {
+                    // show percent and original raw value in tooltip
+                    label: (ctx) => useGenerateChartTooltip(ctx, [data], [totalDataValue]),
+                    title: (items) => (items?.[0] ? items[0].label : ""),
+                },
+            },
         },
         scales: {
             r: {
@@ -62,11 +67,11 @@ const RadarChart = ({ name, dataset }) => {
                     color: '#ffffff8c' // Color of the angle lines (spokes)
                 },
                 grid: {
-                    color: '#ffffff5e' // Color of the circular grid lines
+                    color: chartGridColor // Color of the circular grid lines
                 },
                 pointLabels: {
                     display: true,
-                    color: 'rgb(191, 191, 191)',
+                    color: chartLabelColor,
                     font: {
                         weight: 'bold',
                         size: 12

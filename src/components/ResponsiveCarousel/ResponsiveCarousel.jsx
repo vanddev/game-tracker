@@ -9,6 +9,12 @@ const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
     // Calculate if at the end
     const isEnd = currentSlide >= totalItems - slidesToShow;
 
+    const noCarousel = totalItems <= slidesToShow;
+
+    if (noCarousel) {
+        return null; // Don't render buttons if all items fit in view
+    }
+
     return (
         <div className="carousel-button-group">
             <button disabled={currentSlide === 0} onClick={() => previous()}>

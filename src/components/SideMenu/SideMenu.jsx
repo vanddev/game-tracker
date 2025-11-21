@@ -1,7 +1,6 @@
 import styles from './SideMenu.module.css';
 import { Link, useLocation } from "react-router-dom"
 import { useEffect, useState } from 'react';
-import { sideMenuList } from '../../models/models';
 
 const SideMenu = ({ items }) => {
     const [activeMenu, setActiveMenu] = useState(0);

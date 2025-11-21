@@ -1,9 +1,10 @@
 import { Chart, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import ChartPluginStacked100 from "chartjs-plugin-stacked100";
+import { chartLabelColor, chartGridColor, chartRulerColor, chartDatasetLabelColor } from "../../../contants/contants";
 
 
-const Bar100Chart = () => {
+const Bar100Chart = ({ datasets, labels }) => {
     Chart.register(BarElement, CategoryScale, LinearScale, ChartPluginStacked100, Tooltip, Legend);
 
     const generateColors = (num) => {
@@ -14,17 +15,10 @@ const Bar100Chart = () => {
         return colors;
     };
 
-    const labels = ["Foo", "Bar"]
-    const data = [
-        { label: "bad", data: [5, 25], backgroundColor: "rgba(244, 143, 177, 0.6)" },
-        { label: "better", data: [15, 10], backgroundColor: "rgba(255, 235, 59, 0.6)" },
-        { label: "good", data: [10, 8], backgroundColor: "rgba(100, 181, 246, 0.6)" },
-    ]
-
-    const coloredDatasets = data.map((d, idx) => ({
+    const coloredDatasets = datasets.map((d, idx) => ({
         ...d,
-        backgroundColor: generateColors(data.length)[idx],
-        borderColor: generateColors(data.length)[idx].replace('60%', '40%'),
+        backgroundColor: generateColors(datasets.length)[idx],
+        borderColor: generateColors(datasets.length)[idx].replace('60%', '40%'),
         borderWidth: 1,
     }));
 
@@ -45,7 +39,7 @@ const Bar100Chart = () => {
             legend: {
                 position: 'bottom',
                 labels: {
-                    color: '#ffffff', // Legend font color
+                    color: chartLabelColor, // Legend font color
                     font: {
                         weight: 'bold',
                         size: 14
@@ -53,6 +47,17 @@ const Bar100Chart = () => {
                 }
             }
         },
+        scales: {
+            x: {
+                stacked: true,
+                display: false,
+                ticks: { color: chartRulerColor }
+            },
+            y: {
+                stacked: true,
+                ticks: { color: chartDatasetLabelColor }
+            }
+        }
     }
 
     return (

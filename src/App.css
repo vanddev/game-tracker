@@ -11,6 +11,7 @@
   --z-index-fixed-elements: 3000;
   --section-title-height: 30px;
   --section-title-margin-bottom: 20px;
+  --section-padding-bottom: 20px;
 }
 
 h1.page-title {

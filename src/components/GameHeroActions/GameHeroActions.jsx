@@ -2,7 +2,7 @@ import './GameHeroActions.css'
 import Icon from '@mdi/react';
 import { mdiStar } from '@mdi/js';
 import { useState } from 'react';
-import { statusList } from '../../models/models';
+import { statusList } from '../../contants/contants';
 import { Link } from 'react-router-dom';
 import useURIEncode from '../../hooks/useURIEncode';
 

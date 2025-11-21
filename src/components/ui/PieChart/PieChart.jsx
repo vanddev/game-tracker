@@ -1,22 +1,18 @@
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import useGenerateChartColors from "../../../hooks/useGenerateChartColors";
+import useGenerateChartTooltip from "../../../hooks/useGenerateChartTooltip";
+import { chartLabelColor } from "../../../contants/contants";
 
-const PieChart = ( { name, dataset }) => {
+const PieChart = ( { name, dataset, colors }) => {
 
     Chart.register(ArcElement, Tooltip, Legend);
 
     const labels = dataset.map(item => item.label);
     const dataValues = dataset.map(item => item.value);
+    const totalDataValue = dataValues.reduce((sum, val) => sum + val, 0);
 
-    // Generate dynamic colors
-    const generateColors = (num) => {
-        const colors = [];
-        for (let i = 0; i < num; i++) {
-            // Use HSL for evenly spaced colors
-            colors.push(`hsl(${(i * 360) / num}, 80%, 60%)`);
-        }
-        return colors;
-    };
+    const [bgColors, borderColors] = useGenerateChartColors(dataset.length, colors);
 
     const chartOptions = {
         responsive: true,
@@ -25,13 +21,23 @@ const PieChart = ( { name, dataset }) => {
             legend: {
                 position: 'bottom',
                 labels: {
-                    color: 'rgb(191, 191, 191)',
+                    color: chartLabelColor,
                     font: {
                         weight: 'bold',
                         size: 12
                     }
                 }
-            }
+            },
+            tooltip: {
+                enabled: true,
+                mode: 'nearest',
+                intersect: false,
+                callbacks: {
+                    // show percent and original raw value in tooltip
+                    label: (ctx) => useGenerateChartTooltip(ctx, [dataValues], [totalDataValue]),
+                    title: (items) => (items?.[0] ? items[0].label : ""),
+                },
+            },
         },
     };
 
@@ -39,10 +45,10 @@ const PieChart = ( { name, dataset }) => {
         labels,
         datasets: [
             {
-                label: name,
+                label: 'Games',
                 data: dataValues,
-                backgroundColor: generateColors(labels.length),
-                borderColor: generateColors(labels.length).map(c => c.replace('60%', '40%')),
+                backgroundColor: bgColors,
+                borderColor: borderColors,
                 borderWidth: 1,
             },
         ],

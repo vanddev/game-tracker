@@ -1,7 +1,10 @@
 import { Chart, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import useGenerateChartColors from "../../../hooks/useGenerateChartColors";
+import useGenerateChartTooltip from "../../../hooks/useGenerateChartTooltip";
+import { chartLabelColor, chartGridColor, chartRulerColor, chartDatasetLabelColor } from "../../../contants/contants";
 
-const BarChart = ({ name, dataset, orientation, maxDataPointCount }) => {
+const BarChart = ({ dataset, orientation, labels, maxDataPointCount }) => {
     Chart.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
     
     const chartOrientation = orientation == 'horizontal' ? 'y' : 'x';
@@ -11,28 +14,36 @@ const BarChart = ({ name, dataset, orientation, maxDataPointCount }) => {
     if (maxDataPointCount) {
         let principalDataset = dataset.slice(0, maxDataPointCount);
         let reducedDataset = dataset.slice(maxDataPointCount);
+        let principalLabels = labels.slice(0, maxDataPointCount);
+        let reducedLabels = dataset.slice(maxDataPointCount);
         dataset = reducedDataset.length > 0 ? [...principalDataset, { label: 'Others', value: reducedDataset.reduce((sum, item) => sum + item.value, 0) }] : principalDataset;
+        labels = reducedLabels.length > 0 ? [...principalLabels, 'Others'] : principalLabels;
     }
 
-    const labels = [name]; // Only one category, all bars will be grouped
-    const generateColors = (num) => {
-        const colors = [];
-        for (let i = 0; i < num; i++) {
-            colors.push(`hsl(${(i * 360) / num}, 80%, 60%)`);
-        }
-        return colors;
-    };
+    const [bgColors, borderColors] = useGenerateChartColors(dataset.length);
 
     // Each data point becomes its own dataset
-    const chartData = {
-        labels: ' ',
-        datasets: dataset.map((item, idx) => ({
+    const dataValues = dataset.map(item => item.value);
+    const totalDataValue = dataValues.reduce((sum, val) => sum + val, 0);
+    const datasets = dataset.map((item, idx) => ({
             label: item.label,
             data: [item.value],
-            backgroundColor: generateColors(dataset.length)[idx],
-            borderColor: generateColors(dataset.length)[idx].replace('60%', '40%'),
+            backgroundColor: bgColors[idx],
+            borderColor: borderColors[idx],
             borderWidth: 1,
-        })),
+        }))
+    
+    const chartData = {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Finished Games',
+                data: dataValues,
+                backgroundColor: bgColors,
+                borderColor: borderColors,
+                borderWidth: 1,
+            },
+        ],
     };
 
     const chartOptions = {
@@ -42,23 +53,34 @@ const BarChart = ({ name, dataset, orientation, maxDataPointCount }) => {
         plugins: {
             legend: {
                 position: 'bottom',
+                display: false,
                 labels: {
-                    color: 'rgb(191, 191, 191)', // Legend font color
+                    color: chartLabelColor, // Legend font color
                     font: {
                         weight: 'bold',
                         size: 12
                     }
                 }
-            }
+            },
+            tooltip: {
+                enabled: true,
+                mode: 'nearest',
+                intersect: false,
+                callbacks: {
+                    // show percent and original raw value in tooltip
+                    label: (ctx) => useGenerateChartTooltip(ctx, [dataValues], [totalDataValue]),
+                    title: (items) => (items?.[0] ? items[0].label : ""),
+                },
+            },
         },
         scales: {
             x: {
-                grid: { color: '#ffffff5e' },
-                ticks: { color: '#ffffff5e' }
+                grid: { color: chartGridColor },
+                ticks: { color: chartDatasetLabelColor }
             },
             y: {
-                grid: { color: '#ffffff5e' },
-                ticks: { color: '#ffffff5e' }
+                grid: { color: chartGridColor },
+                ticks: { color: chartRulerColor }
             }
         }
     };

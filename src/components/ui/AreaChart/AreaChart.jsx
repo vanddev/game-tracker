@@ -1,5 +1,7 @@
 import { Chart, LineElement, PointElement, CategoryScale, LinearScale, Filler, Tooltip, Legend } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { chartLabelColor, chartGridColor, chartRulerColor, chartDatasetLabelColor } from "../../../contants/contants";
+
 
 const AreaChart = ({ name, labels, data }) => {
     Chart.register(LineElement, PointElement, CategoryScale, LinearScale, Filler, Tooltip, Legend);
@@ -28,7 +30,7 @@ const AreaChart = ({ name, labels, data }) => {
                 position: 'bottom',
                 display: false,
                 labels: {
-                    color: 'rgb(191, 191, 191)',
+                    color: chartLabelColor,
                     font: {
                         weight: 'bold',
                         size: 12
@@ -38,12 +40,12 @@ const AreaChart = ({ name, labels, data }) => {
         },
         scales: {
             x: {
-                grid: { color: '#ffffff5e' },
-                ticks: { color: '#ffffff5e' }
+                grid: { color: chartGridColor },
+                ticks: { color: chartDatasetLabelColor }
             },
             y: {
-                grid: { color: '#ffffff5e' },
-                ticks: { color: '#ffffff5e' }
+                grid: { color: chartGridColor },
+                ticks: { color: chartRulerColor }
             }
         }
     };
