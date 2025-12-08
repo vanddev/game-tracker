@@ -1,0 +1,40 @@
+.carousel-item-padding {
+    padding: 0 10px;
+}
+
+.carousel-container .react-multiple-carousel__arrow--right {
+    right: calc(2%);
+}
+
+.carousel-container .react-multiple-carousel__arrow--left {
+    left: calc(2%);
+}
+
+.react-multi-carousel-list {
+    padding-bottom: 2px;
+}
+
+.responsive-carousel {
+    position: relative;
+}
+
+.carousel-button-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(calc((var(--section-title-margin-bottom) + var(--section-title-height)) * -1));
+    height: var(--section-title-height);
+}
+
+.carousel-button-group button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.carousel-button-group button:hover {
+    color: white;
+}

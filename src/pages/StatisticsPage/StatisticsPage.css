@@ -1,3 +1,12 @@
+h1 {
+    font-family: ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 30px;
+    color: var(--smooth-white-font-color);
+    font-weight: 700;
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+
 .split-section {
   display: flex;
   flex-direction: row;
@@ -12,4 +21,5 @@
 
 .chart-container.small-chart {
   height: 240px;
+  /* padding-bottom: 20px; */
 }

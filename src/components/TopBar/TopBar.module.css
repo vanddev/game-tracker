@@ -19,3 +19,12 @@
     color: #d4d4d4;
     user-select: none;
 }
+
+.draggable {
+    -webkit-app-region: drag;
+}
+
+/* Non-draggable elements inside the top bar */
+.nonDraggable {
+    -webkit-app-region: no-drag;
+}
