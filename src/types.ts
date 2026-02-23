@@ -33,3 +33,19 @@ export interface AgeRating {
     organization: string;
     descriptions: string[];
 }
+
+export interface Genre {
+    id: number;
+    name: string;
+    slug?: string;
+}
+
+/** Payload returned by the explorer API (REST or Wails). Same contract for all backends. */
+export interface ExplorerData {
+    lastReleased: Game[];
+    comingSoon: Game[];
+    topRated: Game[];
+    allTimeClassics: Game[];
+    underratedGems: Game[];
+    randomGame: Game[];
+}
