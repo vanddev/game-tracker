@@ -2,10 +2,16 @@ import styles from "./GenericGameList.module.css";
 import LinkedItemList from "../LinkedItemList/LinkedItemList";
 import Pagination from "../Pagination/Pagination";
 import SortList from "../SortList/SortList";
-import type { Game } from "../../../types";
+import type { Platform } from "../../../types";
+
+interface GameListProps {
+    name: string;
+    cover: string;
+    platforms: Platform[];
+}
 
 interface GenericGameListProps {
-    games: Game[];
+    games: GameListProps[];
     lastPage?: number;
 }
 

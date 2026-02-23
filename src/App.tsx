@@ -10,6 +10,9 @@ import LibraryPage from './pages/LibraryPage/LibraryPage'
 import FilteredGameListPage from './pages/FilteredGameListPage/FilteredGameListPage'
 import { House, Library, LayoutGrid, ChartNoAxesColumn } from 'lucide-react';
 import ExplorerPage from './pages/ExplorerPage/ExplorerPage';
+import GenreGameListPage from './pages/GenreGameListPage/GenreGameListPage'
+import ThemeGameListPage from './pages/ThemeGameListPage/ThemeGameListPage'
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 
 
 function App() {
@@ -28,13 +31,15 @@ function App() {
         <SideMenu items={sideMenuItems} />
         <main className='main-content-container'>
           <Routes>
-            <Route path='/games/:category/:filter' element={ <FilteredGameListPage /> }></Route>
             <Route path='/game' element={ <GamePage /> }></Route>
+            <Route path='/library/:category' element={ <FilteredGameListPage /> }></Route>
             <Route path='/library' element={ <LibraryPage /> }></Route>
+            <Route path='/genres/:genreName' element={ <GenreGameListPage /> }></Route>
+            <Route path='/themes/:themeName' element={ <ThemeGameListPage /> }></Route>
             <Route path='/statistics' element={ <StatisticsPage /> }></Route>
             <Route path='/explorer' element={ <ExplorerPage /> }></Route>
             <Route path='/' element={ <HomePage /> }/>
-            <Route path='*' element={ <HomePage /> }/>
+            <Route path='*' element={ <NotFoundPage /> }/>
           </Routes>
         </main>
     </BrowserRouter>
