@@ -1,6 +1,6 @@
 import { Chart, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from "chart.js";
 import { Radar } from "react-chartjs-2";
-import { chartLabelColor, chartGridColor } from "../../../contants/contants";
+import { chartLabelColor, chartGridColor } from "../../../constants/constants";
 import useGenerateChartColors from "../../../hooks/useGenerateChartColors";
 import useGenerateChartTooltip from "../../../hooks/useGenerateChartTooltip";
 import type { ChartOptions } from "chart.js";

@@ -6,38 +6,52 @@ import { GenreIcon } from "../../components/ui/GenreIcon/GenreIcon";
 import { ThemeIcon } from "../../components/ui/ThemeIcon/ThemeIcon";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import { mainGenres, mainThemes, moreGenres, moreThemes } from '../../contants/contants';
-import { explorerService } from '../../services/explorer';
-import type { ExplorerData } from '../../types';
+import { mainGenres, mainThemes, moreGenres, moreThemes } from '../../constants/constants';
+import { gameService } from '../../services/game';
+import type { Game, Pagination } from '../../types';
 
 
 const ExplorerPage = () => {
 
+    const emptyPagination: Pagination<Game> = {
+        items: [],
+        totalPages: 0,
+        page: 0,
+        size: 0,
+        lastPage: true,
+        firstPage: true
+    };
+    const [currentYear] = useState(new Date().getFullYear());
     const [isShowMoreGenres, setShowMoreGenres] = useState(false);
     const [isShowMoreThemes, setShowMoreThemes] = useState(false);
-    const [explorerData, setExplorerData] = useState<ExplorerData | null>(null);
+    const [lastReleasedGames, setLastReleasedGames] = useState<Pagination<Game>>(emptyPagination);
+    const [comingSoonGames, setComingSoonGames] = useState<Pagination<Game>>(emptyPagination);
+    const [topRatedGames, setTopRatedGames] = useState<Pagination<Game>>(emptyPagination);
+    const [goatGames, setGoatGames] = useState<Pagination<Game>>(emptyPagination);
+    // const [allTimeClassics, setAllTimeClassics] = useState<Pagination<Game>>(emptyPagination);
+    const [randomGames, setRandomGames] = useState<Pagination<Game>>(emptyPagination);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    const loadData = async () => {
+        setLoading(true);
+        try {
+            setLastReleasedGames(await gameService.GetLatestGames());
+            setComingSoonGames(await gameService.GetNextGames());
+            setTopRatedGames(await gameService.GetTopRatedGames(currentYear));
+            setGoatGames(await gameService.GetTopRatedGames());
+            // setAllTimeClassics(await gameService.GetAllTimeClassics());
+            setRandomGames(await gameService.GetRandomGames());
+            setError(null);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to load explorer data');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
-        let cancelled = false;
-        explorerService
-            .getExplorerData()
-            .then((data) => {
-                if (!cancelled) {
-                    setExplorerData(data);
-                    setError(null);
-                }
-            })
-            .catch((err) => {
-                if (!cancelled) {
-                    setError(err instanceof Error ? err.message : 'Failed to load explorer data');
-                }
-            })
-            .finally(() => {
-                if (!cancelled) setLoading(false);
-            });
-        return () => { cancelled = true; };
+        loadData();
     }, []);
 
     const renderGenre = (genre: any) => {
@@ -96,11 +110,12 @@ const ExplorerPage = () => {
         )
     }
 
-    const renderGameSection = (games: ExplorerData['lastReleased']) => (
+    const renderGameSection = (games: Game[]) => (
         <div className="cards">
-            {games.map((game, index) => (
+            {games.map((game) => (
                 <GameCard
-                    key={`${game.name}-${index}`}
+                    key={game.id}
+                    id={game.id}
                     name={game.name}
                     cover={game.cover}
                     genres={game.genres}
@@ -128,44 +143,36 @@ const ExplorerPage = () => {
         );
     }
 
-    const data = explorerData ?? {
-        lastReleased: [],
-        comingSoon: [],
-        topRated: [],
-        allTimeClassics: [],
-        underratedGems: [],
-        randomGame: [],
-    };
-
-  return (
-    <>
-        <PageTitle title="Browse" />
-        <Section title="Last Released" titleLink="/games/last-released" removeBackground>
-            {renderGameSection(data.lastReleased)}
-        </Section>
-        <Section title="Coming Soon" titleLink="/games/coming-soon" removeBackground>
-            {renderGameSection(data.comingSoon)}
-        </Section>
-        <Section title="Top Rated of the Year" titleLink="/games/top-rated" removeBackground>
-            {renderGameSection(data.topRated)}
-        </Section>
-        <Section title="All Time Classics" titleLink="/games/all-time-classics" removeBackground>
-            {renderGameSection(data.allTimeClassics)}
-        </Section>
-        <Section title={isShowMoreGenres ? "All Genres" : "Genres"} titleAction={ !isShowMoreGenres ? () => {setShowMoreGenres(true)} : undefined } removeBackground>
-            { renderGenres() }
-        </Section>
-        <Section title={isShowMoreThemes ? "All Themes" : "Themes"} titleAction={ !isShowMoreThemes ? () => {setShowMoreThemes(true)} : undefined } removeBackground>
-            { renderThemes() }
-        </Section>
-        <Section title="Underrated Gems"  titleLink="/games/underrated-gems" removeBackground>
-            {renderGameSection(data.underratedGems)}
-        </Section>
-        <Section title="Random Game"  titleLink="/games/random-game"  removeBackground>
-            {renderGameSection(data.randomGame)}
-        </Section>
-    </>
-  )
+    return (
+        <>
+            <PageTitle title="Browse" />
+            <Section title="Top Rated of the Year" titleLink={`/games/top-rated?year=${currentYear}`} titleState={{ initialPage: topRatedGames }} removeBackground>
+                {renderGameSection(topRatedGames.items.slice(0, 6))}
+            </Section>
+            <Section title="Last Released" titleLink="/games/last-released" titleState={{ initialPage: lastReleasedGames }} removeBackground>
+                {renderGameSection(lastReleasedGames.items.slice(0, 6))}
+            </Section>
+            <Section title="Coming Soon" titleLink="/games/coming-soon" titleState={{ initialPage: comingSoonGames }} removeBackground>
+                {renderGameSection(comingSoonGames.items.slice(0, 6))}
+            </Section>
+            <Section title={isShowMoreGenres ? "All Genres" : "Genres"} titleAction={ !isShowMoreGenres ? () => {setShowMoreGenres(true)} : undefined } removeBackground>
+                { renderGenres() }
+            </Section>
+            <Section title={isShowMoreThemes ? "All Themes" : "Themes"} titleAction={ !isShowMoreThemes ? () => {setShowMoreThemes(true)} : undefined } removeBackground>
+                { renderThemes() }
+            </Section>
+            <Section title="GOAT (Greatest of All Time)" titleLink="/games/top-rated" titleState={{ initialPage: goatGames }} removeBackground>
+                {renderGameSection(goatGames.items.slice(0, 6))}
+            </Section>
+            {/* <Section title="All Time Classics" titleLink="/games/all-time-classics" titleState={{ initialPage: allTimeClassics }} removeBackground>
+                {renderGameSection(allTimeClassics.items.slice(0, 6))}
+            </Section> */}
+            
+            <Section title="Random Game"  titleLink="/games/random-game"  titleState={{ initialPage: randomGames }} removeBackground>
+                {renderGameSection(randomGames.items.slice(0, 6))}
+            </Section>
+        </>
+    )
 }
 
 export default ExplorerPage;

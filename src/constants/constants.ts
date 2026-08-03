@@ -126,6 +126,12 @@ export const moreGenres: Genre[] = [
   }
 ]
 
+export const getGenre = (genreName: string): Genre => {
+  const allGenres = [...mainGenres, ...moreGenres];
+  const genre = allGenres.find(g => g.name.toLowerCase() === genreName.toLowerCase());
+  return genre ? genre : { id: -1, name: genreName };
+}
+
 export const mainThemes = [
     {
         "id": 1,

@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 interface SectionProps {
     title: string;
     titleLink?: string;
+    titleState?: any;
     titleAction?: () => void;
     removeBackground?: boolean;
     children: React.ReactNode;
@@ -24,7 +25,7 @@ function Section(props: SectionProps) {
 
         if (props.titleLink) {
             return (
-                <Link to={props.titleLink} className={styles.titleLink}>
+                <Link to={props.titleLink} className={styles.titleLink} state={{ ...props.titleState }}>
                     <h3>{props.title} <ArrowRight className={styles.arrow} size={18}/></h3>
                 </Link>
             );

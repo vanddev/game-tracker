@@ -2,7 +2,7 @@ import { Chart, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from "
 import { Bar } from "react-chartjs-2";
 import useGenerateChartColors from "../../../hooks/useGenerateChartColors";
 import useGenerateChartTooltip from "../../../hooks/useGenerateChartTooltip";
-import { chartLabelColor, chartGridColor, chartRulerColor, chartDatasetLabelColor } from "../../../contants/contants";
+import { chartLabelColor, chartGridColor, chartRulerColor, chartDatasetLabelColor } from "../../../constants/constants";
 import type { ChartOptions } from "chart.js";
 
 interface BarChartProps {

@@ -2,7 +2,7 @@ import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import useGenerateChartColors from "../../../hooks/useGenerateChartColors";
 import useGenerateChartTooltip from "../../../hooks/useGenerateChartTooltip";
-import { chartLabelColor } from "../../../contants/contants";
+import { chartLabelColor } from "../../../constants/constants";
 import type { ChartOptions } from "chart.js";
 
 interface PieChartProps {

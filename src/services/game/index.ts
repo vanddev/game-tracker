@@ -1,14 +1,14 @@
-import type { IExplorerService } from './types';
+import type { IGameService } from './types';
 import { httpExplorerService } from './httpExplorerService';
 import { wailsExplorerService } from './wailsExplorerService';
 import { mockExplorerService } from './mockExplorerService';
 
 /** Use Wails when running inside Wails (window.go exists); otherwise use HTTP. */
-function selectImplementation(): IExplorerService {
+function selectImplementation(): IGameService {
   if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
     return mockExplorerService;
   }
-  if (typeof window !== 'undefined' && window.go?.main?.App?.GetExplorerData) {
+  if (typeof window !== 'undefined' && window.go?.main?.App?.GetLatestGames) {
     return wailsExplorerService;
   }
   return httpExplorerService;
@@ -18,9 +18,9 @@ function selectImplementation(): IExplorerService {
  * Single explorer service entry point. Components consume this with the same contract
  * regardless of whether data comes from REST or Wails.
  */
-export const explorerService: IExplorerService = selectImplementation();
+export const gameService: IGameService = selectImplementation();
 
-export type { IExplorerService } from './types';
+export type { IGameService } from './types';
 export { httpExplorerService } from './httpExplorerService';
 export { wailsExplorerService } from './wailsExplorerService';
 export { mockExplorerService } from './mockExplorerService';

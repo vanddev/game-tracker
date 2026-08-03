@@ -2,13 +2,17 @@ import './GameHeroActions.css'
 import Icon from '@mdi/react';
 import { mdiStar } from '@mdi/js';
 import { useState } from 'react';
-import { statusList, type StatusItem } from '../../contants/contants.ts';
+import { statusList, type StatusItem } from '../../constants/constants.ts';
 import { Link } from 'react-router-dom';
 import useURIEncode from '../../hooks/useURIEncode';
+import type { Genre, Platform, Theme } from '../../types.ts';
 
 interface GameHeroActionsProps {
   bgColor: string;
   isFloating: boolean;
+  genres: Genre[];
+  platforms?: Platform[];
+  themes?: Theme[];
 }
 
 function GameHeroActions( props: GameHeroActionsProps) {
@@ -33,9 +37,36 @@ function GameHeroActions( props: GameHeroActionsProps) {
     setFloatingButtonActive(false);
   }
 
-  const genres = ['RPG', "Hack'n Slash", 'Adventure'];
-  const platforms = ['PC', 'PS5', 'PS4'];
-  const themes = ['Action', 'Fantasy', 'Historical'];
+  function renderGenres() {
+    return props.genres?.filter((genre) => !!genre.name).map((genre, index) => (
+      <span key={index}>
+        {index > 0 && ', '}
+        <Link to={`/genres/${useURIEncode(genre.name)}`}>{genre.name}</Link>
+      </span>
+    ));
+  }
+
+  function renderPlatforms() {
+    return props.platforms?.filter((platform) => !!platform.name).map((platform, index) => (
+      <span key={index}>
+        {index > 0 && ', '}
+        <Link to={`/platforms/${encodeURIComponent(platform.name)}`}>{platform.name}</Link>
+      </span>
+    ));
+  }
+
+  function renderThemes() {
+    return props.themes?.filter((theme) => !!theme.name).map((theme, index) => (
+      <span key={index}>
+        {index > 0 && ', '}
+        <Link to={`/themes/${useURIEncode(theme.name)}`}>{theme.name}</Link>
+      </span>
+    ));
+  }
+
+  // const genres = ['RPG', "Hack'n Slash", 'Adventure'];
+  // const platforms = ['PC', 'PS5', 'PS4'];
+  // const themes = ['Action', 'Fantasy', 'Historical'];
 
   return (
     
@@ -43,30 +74,15 @@ function GameHeroActions( props: GameHeroActionsProps) {
       <div>
         <p>
           <strong>Genres: </strong>
-          {genres.map((genre, index) => (
-            <span key={index}>
-              {index > 0 && ', '}
-              <Link to={`/games/genres/${useURIEncode(genre)}`}>{genre}</Link>
-            </span>
-          ))}
+          { renderGenres() }
         </p>
         <p>
           <strong>Platforms: </strong>
-          {platforms.map((platform, index) => (
-            <span key={index}>
-              {index > 0 && ', '}
-              <Link to={`/games/platforms/${useURIEncode(platform)}`}>{platform}</Link>
-            </span>
-          ))}
+          { renderPlatforms() }
         </p>
         <p>
           <strong>Themes: </strong>
-          {themes.map((theme, index) => (
-            <span key={index}>
-              {index > 0 && ', '}
-              <Link to={`/games/themes/${useURIEncode(theme)}`}>{theme}</Link>
-            </span>
-          ))}
+          { renderThemes() }
         </p>
       </div>
       { props.isFloating ?

@@ -5,7 +5,7 @@ import PageTitle from '../../components/PageTitle/PageTitle';
 import useURIDecode from '../../hooks/useURIDecode';
 import type { Genre, Platform } from '../../types';
 import { useEffect, useState } from 'react';
-import { mainGenres, moreGenres } from '../../contants/contants';
+import { mainGenres, moreGenres } from '../../constants/constants';
 
 function GenreGameListPage() {
   ScrollToTop();

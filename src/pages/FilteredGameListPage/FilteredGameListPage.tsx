@@ -1,13 +1,33 @@
 import GenericGameList from '../../components/ui/GenericGameList/GenericGameList';
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import ScrollToTop from '../../components/ScrollToTop';
 import PageTitle from '../../components/PageTitle/PageTitle';
 import useURIDecode from '../../hooks/useURIDecode';
-import type { Platform } from '../../types';
+import type { Game, Platform } from '../../types';
+import { useState } from 'react';
+
+interface LocationState {
+  initialPage?: Game[];
+}
 
 function FilteredGameListPage() {
   ScrollToTop();
   const { category } = useParams();
+  const location = useLocation();
+  const state = location.state as LocationState | null;
+
+  const [games, setGames] = useState<Game[]>(state?.initialPage || []);
+  const [page, setPage]   = useState(1);
+  const [loading, setLoading] = useState(!state?.initialPage);
+
+
+
+  // useEffect(() => {
+  //   if (!state?.initialPage) {
+  //     // fetch first page from API
+  //     loadGames(1);
+  //   }
+  // }, [state]);
 
   function capitalize(s: string | undefined) {
     if (typeof s !== 'string') return '';

@@ -31,7 +31,7 @@ function App() {
         <SideMenu items={sideMenuItems} />
         <main className='main-content-container'>
           <Routes>
-            <Route path='/game' element={ <GamePage /> }></Route>
+            <Route path='/game/:gameId' element={ <GamePage /> }></Route>
             <Route path='/library/:category' element={ <FilteredGameListPage /> }></Route>
             <Route path='/library' element={ <LibraryPage /> }></Route>
             <Route path='/genres/:genreName' element={ <GenreGameListPage /> }></Route>

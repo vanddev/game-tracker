@@ -1,8 +1,50 @@
+import { use, useEffect, useState } from 'react';
+import type { Game } from '../../types';
 import Section from '../ui/Section/Section'
 import './GameDetails.css'
+interface GameDetailsProps {
+  game: Game;
+}
 
-const GameDetails = () => {
-  const keywords = ['greek mythology', 'exploration', 'violence', 'story driven', 'norse mythology', "crafting", 'dark fantasy', "upgradable weapons", "cinematic", "deer", "mythology", "hand-to-hand combat", "combat", "over the shoulder", "emotional", "trolls", "boss fight", "game critics awards",  "e3 2017", "bow and arrow", "descendants of other characters", "e3 2016", "skill tree", "the game awards 2017", "the game awards - nominee", "the game awards 2016", "narrative", "norse", "male protagonist", "kratos", "the game awards - most anticipated game - nominee", "father and son relationship"]
+const GameDetails = ({game}: GameDetailsProps) => {
+
+  const [esrbRating, setEsrbRating] = useState<string | null>(null);
+  const [pegiRating, setPegiRating] = useState<string | null>(null);
+  const [classIndRating, setClassIndRating] = useState<string | null>(null);
+  const [releases, setReleases] = useState<string[]>([]);
+  const [playersPerspective, setPlayersPerspective] = useState<string[]>([]);
+
+  useEffect(() => {
+
+    const esrbRating = game.ageRatings?.find(rating => rating.organization.toLowerCase() === 'esrb');
+    if (esrbRating) {
+      setEsrbRating(esrbRating.rating);
+    }
+    const pegiRating = game.ageRatings?.find(rating => rating.organization.toLowerCase() === 'pegi');
+    if (pegiRating) {
+      setPegiRating(pegiRating.rating);
+    }
+    const classIndRating = game.ageRatings?.find(rating => rating.organization.toLowerCase() === 'class_ind');
+    if (classIndRating) {
+      setClassIndRating(classIndRating.rating);
+    }
+    const releases = game.releases?.filter(release => release.status == "Full Release" && release.region == "worldwide")
+        .map(release => `${release.platform?.name} - ${new Date(release.releaseDate * 1000).getFullYear()}`);
+    if (releases) {
+      setReleases(releases);
+    }
+
+  }, [game]);
+
+  const buildRatingIconUrl = (organization: string, rating: string) => {
+    // clean the rating string to remove any non-alphanumeric characters and convert to lowercase
+    const cleanedRating = rating.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+    let cleanedOrganization = organization.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+    if (cleanedOrganization === 'classind') {
+      cleanedOrganization = 'class_ind';
+    }
+    return `https://www.igdb.com/icons/rating_icons/${cleanedOrganization}/${cleanedOrganization}_${cleanedRating}.png`;
+  }
   
   return (
     <div className='game-details'>
@@ -28,7 +70,7 @@ const GameDetails = () => {
             <div className='spec-item'>
               <span className='el-title'>Players Perspective</span>
               <ul>
-                <li>Third Person</li>
+                { game.playerPerspectives && game.playerPerspectives.map((perspective, index) => <li key={index}>{perspective}</li>) }
               </ul>
             </div>
           </div>
@@ -50,8 +92,7 @@ const GameDetails = () => {
             <div className='spec-item'>
               <span className='el-title'>Releases</span>
               <ul>
-                <li>Playstation 4 - 2018</li>
-                <li>PC - 2022</li>
+                { releases.map((release, index) => <li key={index}>{release}</li>) }
               </ul>
             </div>
           </div> 
@@ -66,7 +107,7 @@ const GameDetails = () => {
             <div className='rating'>
               <span>IGDB</span>
               <div>
-                <span>96</span>
+                <span>{Math.round(game.rating)}</span>
               </div>
             </div>
             <div className='rating'>
@@ -85,24 +126,24 @@ const GameDetails = () => {
         </Section>
         <Section title="Age Ratings">
           <div className="ratings">
-            <div className='rating'>
+            { esrbRating && <div className='rating'>
               <span>US</span>
-              <img src='https://www.igdb.com/icons/rating_icons/esrb/esrb_m.png'></img>
-            </div>
-            <div className='rating'>
+              <img src={buildRatingIconUrl('esrb', esrbRating ? esrbRating : '')}></img>
+            </div> }
+            { pegiRating && <div className='rating'>
               <span>EU</span>
-              <img src='https://www.igdb.com/icons/rating_icons/pegi/pegi_18.png'></img>
-            </div>
-            <div className='rating'>
+              <img src={buildRatingIconUrl('pegi', pegiRating ? pegiRating : '')}></img>
+            </div> }
+            { classIndRating && <div className='rating'>
               <span>BR</span>
-              <img src='https://www.igdb.com/icons/rating_icons/class_ind/class_ind_18.png'></img>
-            </div>
+              <img src={buildRatingIconUrl('class_ind', classIndRating ? classIndRating : '')}></img>
+            </div> }
           </div>
         </Section>
       </div>
       <Section title="Keywords">
-        {keywords && keywords.map((keyword) => (
-          <span className="keyword" key={keyword}>{keyword}</span>
+        {game.keywords && game.keywords.map((keyword, index) => (
+          <span className="keyword" key={index}>{`#${keyword} `}</span>
         ))}
       </Section>
     </div>
