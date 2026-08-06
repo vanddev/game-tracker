@@ -1,6 +1,6 @@
 import { Chart, LineElement, PointElement, CategoryScale, LinearScale, Filler, Tooltip, Legend } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { chartLabelColor, chartGridColor, chartRulerColor, chartDatasetLabelColor } from "../../../contants/contants";
+import { chartLabelColor, chartGridColor, chartRulerColor, chartDatasetLabelColor } from "../../../constants/constants";
 import type { ChartOptions } from "chart.js";
 
 interface AreaChartProps {

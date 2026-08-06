@@ -1,7 +1,7 @@
 import { Chart, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import ChartPluginStacked100 from "chartjs-plugin-stacked100";
-import { chartLabelColor, chartRulerColor, chartDatasetLabelColor } from "../../../contants/contants";
+import { chartLabelColor, chartRulerColor, chartDatasetLabelColor } from "../../../constants/constants";
 import type { ChartOptions } from "chart.js";
 
 interface Bar100ChartProps {

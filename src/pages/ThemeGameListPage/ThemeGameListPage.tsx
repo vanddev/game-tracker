@@ -1,33 +1,13 @@
 import GenericGameList from '../../components/ui/GenericGameList/GenericGameList';
-import { useLocation, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import ScrollToTop from '../../components/ScrollToTop';
 import PageTitle from '../../components/PageTitle/PageTitle';
 import useURIDecode from '../../hooks/useURIDecode';
-import type { Game, Platform } from '../../types';
-import { useState } from 'react';
+import type { Platform } from '../../types';
 
-interface LocationState {
-  initialPage?: Game[];
-}
-
-function FilteredGameListPage() {
+function ThemeGameListPage() {
   ScrollToTop();
-  const { category } = useParams();
-  const location = useLocation();
-  const state = location.state as LocationState | null;
-
-  const [games, setGames] = useState<Game[]>(state?.initialPage || []);
-  const [page, setPage]   = useState(1);
-  const [loading, setLoading] = useState(!state?.initialPage);
-
-
-
-  // useEffect(() => {
-  //   if (!state?.initialPage) {
-  //     // fetch first page from API
-  //     loadGames(1);
-  //   }
-  // }, [state]);
+  const { themeName } = useParams();
 
   function capitalize(s: string | undefined) {
     if (typeof s !== 'string') return '';
@@ -46,7 +26,7 @@ function FilteredGameListPage() {
 
   return (
     <article>
-      <PageTitle title={ `${capitalize(category)} Games` } />
+      <PageTitle title={ `${capitalize(themeName)} Games` } />
       <GenericGameList games={[
           { name: "God of War", cover: "/similar_games/godofwar.png", platforms: [platforms[0], platforms[3]] },
           { name: "Remnant: From the Ashes", cover: "/similar_games/remnant.jpg", platforms: [] },
@@ -62,4 +42,4 @@ function FilteredGameListPage() {
     
   )
 }
-export default FilteredGameListPage
+export default ThemeGameListPage

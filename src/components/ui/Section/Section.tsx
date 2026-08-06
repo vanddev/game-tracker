@@ -5,6 +5,8 @@ import { ArrowRight } from 'lucide-react';
 interface SectionProps {
     title: string;
     titleLink?: string;
+    titleState?: any;
+    titleAction?: () => void;
     removeBackground?: boolean;
     children: React.ReactNode;
 }
@@ -12,9 +14,18 @@ interface SectionProps {
 function Section(props: SectionProps) {
 
     const renderTitle = () => {
+
+        if (props.titleAction) {
+            return (
+                <button onClick={props.titleAction}>
+                    <h3>{props.title} <ArrowRight className={styles.arrow} size={18}/></h3>
+                </button>
+            )
+        }
+
         if (props.titleLink) {
             return (
-                <Link to={props.titleLink} className={styles.titleLink}>
+                <Link to={props.titleLink} className={styles.titleLink} state={{ ...props.titleState }}>
                     <h3>{props.title} <ArrowRight className={styles.arrow} size={18}/></h3>
                 </Link>
             );

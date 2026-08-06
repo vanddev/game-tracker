@@ -5,8 +5,8 @@ import { average } from 'color.js'
 
 interface GameHeroProps {
   game_name: string;
-  background_image: string;
-  foreground_image: string;
+  hero: string;
+  cover: string;
   content_style: 'logo' | 'cover';
   hltb?: {
     main_story: string;
@@ -18,34 +18,34 @@ interface GameHeroProps {
 }
 
 function GameHero(props: GameHeroProps) {
-  useEffect(() => {
-    const img = new Image()
-    img.src = props.background_image
-    img.onload = () => {
-      average(props.background_image, {
-        amount: 1,
-        format: "array"
-      }).then((averageColor) => {props.colorHandle(averageColor)})
-    }
+  // useEffect(() => {
+  //   const img = new Image()
+  //   img.src = props.hero
+  //   img.onload = () => {
+  //     average(props.hero, {
+  //       amount: 1,
+  //       format: "array"
+  //     }).then((averageColor) => {props.colorHandle(averageColor)})
+  //   }
 
-    img.onerror = () => {
-      console.error('Failed to load the background image')
-    }
+  //   img.onerror = () => {
+  //     console.error('Failed to load the background image')
+  //   }
 
-    //Cleanup
-    return () => {
-      img.onload = null;
-      img.onerror = null;
-    };
+  //   //Cleanup
+  //   return () => {
+  //     img.onload = null;
+  //     img.onerror = null;
+  //   };
   
-  }, [props.background_image])
+  // }, [props.hero])
 
   return (
-    <div className="hero-container" style={{backgroundImage: `url(${props.background_image})`}}>
+    <div className="hero-container" style={{backgroundImage: `url(${props.hero})`}}>
       <div className="hero-filter">
         <div  className="capsule" >
           { props.content_style == 'cover' && <h1>{props.game_name}</h1> }
-          <img src={props.foreground_image} className={props.content_style} width={ props.content_style == 'cover' ? '500' : '300'} />
+          <img src={props.cover} className={props.content_style} width={ props.content_style == 'cover' ? '500' : '300'} />
         </div>
         { props.hltb && <div className="hltb">
           <div className='htlb-content'>

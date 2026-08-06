@@ -1,17 +1,31 @@
+export interface Pagination<T> {
+    items: T[];
+    totalPages: number;
+    page: number;
+    size: number;
+    lastPage: boolean;
+    firstPage: boolean;
+}
+
 export interface Game {
-    ggstatus: string;
+    id: number;
+    ggstatus?: string;
     name: string;
     cover: string;
-    type: string;
-    game_status: string;
-    platforms: Platform[];
-    releases: Release[];
-    keywords: string[];
-    themes: string[];
-    genres: string[];
-    player_perspectives: string[];
-    game_modes: string[];
-    age_ratings: AgeRating[];
+    rating: number;
+    hero?: string;
+    logo?: string;
+    type?: string;
+    game_status?: string;
+    platforms?: Platform[];
+    firstReleaseDate?: number;
+    releases?: Release[];
+    themes?: Theme[];
+    genres: Genre[];
+    keywords?: string[];
+    playerPerspectives?: string[];
+    gameModes?: string[];
+    ageRatings?: AgeRating[];
 }
 
 export interface Platform {
@@ -23,13 +37,34 @@ export interface Platform {
 export interface Release {
     platform: Platform
     region: string;
-    year: string;
-    month: string;
+    releaseDate: number;
     status: string;
 }
 
 export interface AgeRating {
     rating: string;
     organization: string;
-    descriptions: string[];
+    contentDescriptions: string;
+}
+
+export interface Genre {
+    id: number;
+    name: string;
+    slug?: string;
+}
+
+export interface Theme {
+    id: number;
+    name: string;
+    slug?: string;
+}
+
+/** Payload returned by the explorer API (REST or Wails). Same contract for all backends. */
+export interface ExplorerData {
+    lastReleased: Game[];
+    comingSoon: Game[];
+    topRated: Game[];
+    allTimeClassics: Game[];
+    underratedGems: Game[];
+    randomGame: Game[];
 }

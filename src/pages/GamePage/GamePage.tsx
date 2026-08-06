@@ -5,20 +5,38 @@ import GameDetails from "../../components/GameDetails/GameDetails"
 import ResponsiveCaroulsel from "../../components/ResponsiveCarousel/ResponsiveCarousel"
 import Section from "../../components/ui/Section/Section"
 import PageTitle from "../../components/PageTitle/PageTitle"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Color from "color"
 import { useResponsiveContext } from '../../context/ResponsiveContext'
 import ScrollToTop from '../../components/ScrollToTop';
 import GameCard from "../../components/GameCard/GameCard"
+import { gameService } from '../../services/game';
+import { useParams } from "react-router-dom"
+import type { Game } from "../../types"
 
 function GamePage() {
   ScrollToTop();
-  const hero = {url: "./library_hero_2x.jpg", name: "Assassin's Creed Valhalla"}
-  const logo = {url: "./logo_2x.png"}
-  const cover = {url: "./library_2x.jpg"}
+  const { gameId } = useParams();
+  const [game, setGame] = useState<Game>({} as Game);
+  const [pageTitle, setPageTitle] = useState("")
   const [heroActionsBg, setHeroActionsBg] = useState("")
 
   const { isMobile } = useResponsiveContext()
+
+  useEffect(() => {
+    gameService.GetGame(parseInt(gameId ? gameId : "0")).then((game) => {
+      setGame(game);
+      console.log('Fetched game data:', gameId, game);
+      if (game.firstReleaseDate) {
+        const releaseYear = new Date(game.firstReleaseDate * 1000).getFullYear();
+        setPageTitle(`${game.name} (${releaseYear})`);
+      } else {
+        setPageTitle(game.name);
+      }
+    }).catch((error) => {
+      console.error('Error fetching game data:', error);
+    });
+  }, [gameId]);
 
   interface HSL {
     h: number;
@@ -124,44 +142,44 @@ function GamePage() {
     "all_styles": "84 Hours"
   }
 
-  const similarGames = [
-    <GameCard name="God of War" cover="/similar_games/godofwar.png" key={0}></GameCard>,
-    <GameCard name="Remnant: From the Ashes" cover="/similar_games/remnant.jpg" key={1}></GameCard>,
-    <GameCard name="Dragon: Marked for Death" cover="/similar_games/dragonmarketfordeath.png" key={2}></GameCard>,
-    <GameCard name="Borderlands 3" cover="/similar_games/borderlands3.png" key={3}></GameCard>,
-    <GameCard name="Life is Feudal: Your Own" cover="/similar_games/lifeisfeudal.jpg" key={4}></GameCard>,
-    <GameCard name="Pokemon Shield" cover="/similar_games/pokemonshield.png" key={5}></GameCard>,
-    <GameCard name="Warhammer: Chaosbane" cover="/similar_games/warhammer-chaosbane.png" key={6}></GameCard>,
-    <GameCard name="Battle Brothers" cover="/similar_games/battlebrothers.png" key={7}></GameCard>,
-    <GameCard name="Savage Lands" cover="/similar_games/savagelands.png" key={8}></GameCard>,
-    <GameCard name="Torchlight III" cover="/similar_games/torchilight3.jpg" key={9}></GameCard>,
-    <GameCard name="Assassins Creed Odyssey" cover="/similar_games/assassinscreedodyssey.png" key={10}></GameCard>,
-    <GameCard name="Children of Morta" cover="/similar_games/childrenofmorta.jpg" key={11}></GameCard>,
-    <GameCard name="Shadows: Awakening" cover="/similar_games/shadowsawakening.png" key={12}></GameCard>,
-    <GameCard name="GreedFall" cover="/similar_games/greedfall.png" key={13}></GameCard>,
-    <GameCard name="Hytale" cover="/similar_games/hytale.png" key={14}></GameCard>,
-  ]
+  // const similarGames = [
+    // <GameCard name="God of War" cover="/similar_games/godofwar.png" key={0}></GameCard>,
+    // <GameCard name="Remnant: From the Ashes" cover="/similar_games/remnant.jpg" key={1}></GameCard>,
+    // <GameCard name="Dragon: Marked for Death" cover="/similar_games/dragonmarketfordeath.png" key={2}></GameCard>,
+    // <GameCard name="Borderlands 3" cover="/similar_games/borderlands3.png" key={3}></GameCard>,
+    // <GameCard name="Life is Feudal: Your Own" cover="/similar_games/lifeisfeudal.jpg" key={4}></GameCard>,
+    // <GameCard name="Pokemon Shield" cover="/similar_games/pokemonshield.png" key={5}></GameCard>,
+    // <GameCard name="Warhammer: Chaosbane" cover="/similar_games/warhammer-chaosbane.png" key={6}></GameCard>,
+    // <GameCard name="Battle Brothers" cover="/similar_games/battlebrothers.png" key={7}></GameCard>,
+    // <GameCard name="Savage Lands" cover="/similar_games/savagelands.png" key={8}></GameCard>,
+    // <GameCard name="Torchlight III" cover="/similar_games/torchilight3.jpg" key={9}></GameCard>,
+    // <GameCard name="Assassins Creed Odyssey" cover="/similar_games/assassinscreedodyssey.png" key={10}></GameCard>,
+    // <GameCard name="Children of Morta" cover="/similar_games/childrenofmorta.jpg" key={11}></GameCard>,
+    // <GameCard name="Shadows: Awakening" cover="/similar_games/shadowsawakening.png" key={12}></GameCard>,
+    // <GameCard name="GreedFall" cover="/similar_games/greedfall.png" key={13}></GameCard>,
+    // <GameCard name="Hytale" cover="/similar_games/hytale.png" key={14}></GameCard>,
+  // ]
 
 
   return (
     <>
-      <PageTitle title={ hero.name } />
+      <PageTitle title={ pageTitle } />
       <div className="overflow-container">
-        <GameHero game_name={hero.name}
-                  background_image={hero.url}
-                  foreground_image={ isMobile ? cover.url : logo.url }
+        <GameHero game_name={ pageTitle }
+                  hero={game!.hero || ""}
+                  cover={ isMobile ? game!.cover : game!.logo || "" }
                   content_style={ isMobile ? "cover" : "logo" }
                   colorHandle={dominantColorHandle}
                   hltb={isMobile ? null : htlb}>
         </GameHero>
-        <GameHeroActions bgColor={heroActionsBg} isFloating={isMobile}></GameHeroActions>
+        { game && <GameHeroActions bgColor={heroActionsBg} isFloating={isMobile} genres={game.genres} platforms={game.platforms} themes={game.themes}/> }
       </div>
-      <GameDetails></GameDetails>
-      <Section title="You may also like" removeBackground>
-        <ResponsiveCaroulsel>
+      { game && <GameDetails game={game}></GameDetails> }
+      {/* <Section title="You may also like" removeBackground> */}
+        {/* <ResponsiveCaroulsel>
           { similarGames }
-        </ResponsiveCaroulsel>
-      </Section>
+        </ResponsiveCaroulsel> */}
+      {/* </Section> */}
     </>
     
   )
